@@ -1,4 +1,5 @@
 import discord
+from os import getenv
 from random import *
 from discord.ext import commands
 from discord.ext.commands import cooldown, BucketType
@@ -434,5 +435,5 @@ async def c0llecti0n4(ctx):
     await ctx.send(embed=embed)
 
 
-bot.run("OTYwNjA0ODU1NDQ4MjY4OTAx.Yks2_A.SOqZREmNy5J59jpWY22V9o7kai0")
+bot.run(getenv('TOKEN'))
 
