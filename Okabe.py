@@ -47,7 +47,7 @@ s1=tpc1*1+tr1*10+ttr1*100+te1*1000+tl1*25000
 tl2=0
 te2=0
 ttr2=6
-tr2=73
+tr2=74
 tpc2=303
 s2=tpc2*1+tr2*10+ttr2*100+te2*1000+tl2*25000
 #doud
