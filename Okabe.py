@@ -41,7 +41,7 @@ tl1=0
 te1=0
 ttr1=17
 tr1=64
-tpc1=295
+tpc1=297
 s1=tpc1*1+tr1*10+ttr1*100+te1*1000+tl1*25000
 #theo
 tl2=0
