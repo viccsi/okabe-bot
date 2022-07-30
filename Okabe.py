@@ -1,4 +1,6 @@
 import discord
+import pymongo
+from pymongo import MongoClient
 from os import getenv
 from random import *
 from discord.ext import commands
@@ -6,11 +8,36 @@ from discord.ext.commands import cooldown, BucketType
 
 bot = commands.Bot(command_prefix = "!", description = "Bot by Vic")
 
+global collection
+global mango_url
+global cluster
+global db
+mango_url = "mongodb+srv://Vicsi:RafaVic1!@cluster0.2ohdo.mongodb.net/?retryWrites=true&w=majority"
+cluster = MongoClient(mango_url)
+db = cluster["OkabeData"]
+collection = db["new"]
+
+
 @bot.event
 async def on_ready():
     print("Ready !")
 
-
+#CONNECT
+@bot.command()
+async def start(ctx):
+    global user_id
+    global author_id
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    if ctx.author == bot.user:
+        return
+    if ctx.author.bot:
+        return
+    if(collection.count_documents({}) == 0):
+        user_info = {"_id": author_id, "money":0}
+        collection.insert_one(user_info)
+    await ctx.channel.send("Your account have been created")
+    
 #HOW TO PLAY  
 @bot.command()
 async def how(ctx):
@@ -19,6 +46,8 @@ async def how(ctx):
     embed.add_field(name="!drop", value="Pour drop une réponse d'Okabe!", inline=False)
     embed.add_field(name="!reward", value="Pour voir les récompenses de drop de réponses de différentes rareté", inline=False)
     embed.add_field(name="!pack", value="Pour récupérer un Gift d'Okabe", inline=False)
+    embed.add_field(name="!shop", value="Pour accéder au shop", inline=False)
+    embed.add_field(name="!buy_[numéro]", value="Pour acheter un article du shop", inline=False)
     embed.add_field(name="!collection[numéro]", value="Pour voir votre collection de mesages(numéro de joueur épinglé)", inline=False)
     embed.add_field(name="!top", value="Pour voir le classement et score des meilleurs joueurs", inline=False)
     await ctx.send(embed=embed)
@@ -41,14 +70,14 @@ tl1=0
 te1=0
 ttr1=17
 tr1=64
-tpc1=297
+tpc1=295
 s1=tpc1*1+tr1*10+ttr1*100+te1*1000+tl1*25000
 #theo
 tl2=0
 te2=0
-ttr2=7
-tr2=75
-tpc2=307
+ttr2=6
+tr2=71
+tpc2=302
 s2=tpc2*1+tr2*10+ttr2*100+te2*1000+tl2*25000
 #doud
 tl3=0
@@ -106,6 +135,21 @@ async def collection4(ctx):
     embed.add_field(name="🟢 Très Rare", value="Total:" f"{ttr4}" " Différents:3/5", inline=False)
     embed.add_field(name="🟠 Rare", value="Total:" f"{tr4}" " Différents:6/7", inline=False)
     embed.add_field(name="🔵 Peu commun", value="Total:" f"{tpc4}" " Différents:[12/12]", inline=False)
+    await ctx.send(embed=embed)
+
+#MONEY
+@bot.command()
+async def money(ctx):
+    global user_id
+    global author_id
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    exp = collection.find(user_id)
+    for money in exp:
+        cur_money = money["money"]
+    embed=discord.Embed(title=" ━━━━━", color=0x636363)
+    embed.set_author(name="MONEY 💸")
+    embed.add_field(name="You have:", value=f"{cur_money}" " 💰", inline=False)
     await ctx.send(embed=embed)
 
 #TOP
@@ -177,6 +221,17 @@ ope=0
 opi=0
 @bot.command()
 async def drop(ctx):
+    global new_money
+    global user_id
+    global author_id
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    new_money=0
+    exp = collection.find(user_id)
+    for money in exp:
+        cur_money = money["money"]
+        new_money = cur_money + 1
+    collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
     global hey
     global ope
     global opi
@@ -260,6 +315,57 @@ async def drop(ctx):
                 embed=discord.Embed(title="🎁 Gift x3 (fais vite la commande `!pack`)", color=0xffffff)
                 await ctx.send(embed=embed)
                 ope=ope+3
+    
+#SHOP
+@bot.command()
+async def shop(ctx):
+    embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
+    embed.set_author(name="SHOP 🛒️")
+    embed.add_field(name="1) 2x gifts 🎁", value="250 💰", inline=False)
+    embed.add_field(name="2) 5x gifts 🎁", value="500 💰", inline=False)
+    await ctx.send(embed=embed)
+@bot.command()
+async def buy_1(ctx):
+    global user_id
+    global author_id
+    global new_money
+    global ope
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    new_money=0
+    exp = collection.find(user_id)
+    for money in exp:
+        cur_money = money["money"]
+    if cur_money>=250:
+        embed=discord.Embed(title="You buy 🎁 Gift x2 !", color=0xffffff)
+        new_money = cur_money - 250
+        collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
+        ope=ope+2
+    else:
+        embed=discord.Embed(title="You don't have enough money !", color=0x636363)
+    await ctx.send(embed=embed)
+@bot.command()
+async def buy_2(ctx):
+    global ope
+    global user_id
+    global author_id
+    global new_money
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    new_money=0
+    exp = collection.find(user_id)
+    for money in exp:
+        cur_money = money["money"]
+    if cur_money>=500:
+        embed=discord.Embed(title="You buy 🎁 Gift x5 !", color=0xffffff)
+        new_money = cur_money - 500
+        collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
+        ope=ope+5
+    else:
+        embed=discord.Embed(title="You don't have enough money !", color=0x636363)
+    await ctx.send(embed=embed)
+
+
 #GIFT
 @bot.command()
 async def pack(ctx):
@@ -341,6 +447,11 @@ async def pack(ctx):
     else:
         embed=discord.Embed(title="❌ There isn't any gift ❌", color=0x636363)
         await ctx.send(embed=embed)
+
+
+
+
+
     
 #DR0P
 @bot.command()
@@ -384,7 +495,7 @@ async def command_dr0p_error(ctx, error):
 @bot.command()
 async def c0llecti0n1(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━", color=0x575757)
-    embed.set_author(name="C0LLECTI0N - Vic 🧪")
+    embed.set_author(name="C0LLECTI0N - Vic 🔬")
     embed.add_field(name="Lab Member 001", value="???????", inline=False)
     embed.add_field(name="Lab Member 002", value="???????", inline=False)
     embed.add_field(name="Lab Member 003", value="???????", inline=False)
@@ -397,7 +508,7 @@ async def c0llecti0n1(ctx):
 @bot.command()
 async def c0llecti0n2(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━", color=0x575757)
-    embed.set_author(name="C0LLECTI0N - Theo 🧪")
+    embed.set_author(name="C0LLECTI0N - Theo 🔬")
     embed.add_field(name="Lab Member 001", value="???????", inline=False)
     embed.add_field(name="Lab Member 002", value="???????", inline=False)
     embed.add_field(name="Lab Member 003", value="???????", inline=False)
@@ -410,7 +521,7 @@ async def c0llecti0n2(ctx):
 @bot.command()
 async def c0llecti0n3(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━", color=0x575757)
-    embed.set_author(name="C0LLECTI0N - Doud' 🧪")
+    embed.set_author(name="C0LLECTI0N - Doud' 🔬")
     embed.add_field(name="Lab Member 001", value="???????", inline=False)
     embed.add_field(name="Lab Member 002", value="???????", inline=False)
     embed.add_field(name="Lab Member 003", value="???????", inline=False)
@@ -423,7 +534,7 @@ async def c0llecti0n3(ctx):
 @bot.command()
 async def c0llecti0n4(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x575757)
-    embed.set_author(name="C0LLECTI0N - Loujok 🧪")
+    embed.set_author(name="C0LLECTI0N - Loujok 🔬")
     embed.add_field(name="Lab Member 001", value="???????", inline=False)
     embed.add_field(name="Lab Member 002", value="???????", inline=False)
     embed.add_field(name="Lab Member 003", value="???????", inline=False)
@@ -436,4 +547,3 @@ async def c0llecti0n4(ctx):
 
 
 bot.run(getenv('TOKEN'))
-
