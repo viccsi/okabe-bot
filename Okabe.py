@@ -323,6 +323,7 @@ async def shop(ctx):
     embed.set_author(name="SHOP 🛒️")
     embed.add_field(name="1) 2x gifts 🎁", value="250 💰", inline=False)
     embed.add_field(name="2) 5x gifts 🎁", value="500 💰", inline=False)
+    embed.add_field(name="3) MEGA gift 🎁", value="10000 💰", inline=False)
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_1(ctx):
@@ -361,6 +362,26 @@ async def buy_2(ctx):
         new_money = cur_money - 500
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         ope=ope+5
+    else:
+        embed=discord.Embed(title="You don't have enough money !", color=0x636363)
+    await ctx.send(embed=embed)
+@bot.command()
+async def buy_3(ctx):
+    global opi
+    global user_id
+    global author_id
+    global new_money
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    new_money=0
+    exp = collection.find(user_id)
+    for money in exp:
+        cur_money = money["money"]
+    if cur_money>=10000:
+        embed=discord.Embed(title="You buy 🎁 MEGA Gift !", color=0xffffff)
+        new_money = cur_money - 10000
+        collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
+        opi=opi+1
     else:
         embed=discord.Embed(title="You don't have enough money !", color=0x636363)
     await ctx.send(embed=embed)
@@ -422,8 +443,7 @@ async def pack(ctx):
         if nb<6000:
             print("mega gift : très rare")
             embed=discord.Embed(title=f, color=0x35d070)
-            await ctx.send(embed=embed)
-        
+            await ctx.send(embed=embed) 
         elif 6000<=nb<8000:
             print("-> giftx10!")
             embed=discord.Embed(title="🎁 Gift x10 ! (fais vite la commande `!pack`)", color=0xffffff)
