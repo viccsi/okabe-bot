@@ -47,7 +47,8 @@ async def how(ctx):
     embed.add_field(name="!shop", value="Pour accéder au shop", inline=False)
     embed.add_field(name="!buy_[numéro]", value="Pour acheter un article du shop", inline=False)
     embed.add_field(name="!Collection", value="Pour voir votre collection de mesages(numéro de joueur épinglé)", inline=False)
-    embed.add_field(name="!top", value="Pour voir le classement et score des meilleurs joueurs", inline=False)
+    embed.add_field(name="!score", value="Pour voir votre score", inline=False)
+    embed.add_field(name="!top", value="⚠️ En maintenance...", inline=False)
     await ctx.send(embed=embed)
 
 #REWARD
