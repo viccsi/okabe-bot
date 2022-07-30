@@ -77,7 +77,7 @@ tl2=0
 te2=0
 ttr2=6
 tr2=73
-tpc2=309
+tpc2=313
 s2=tpc2*1+tr2*10+ttr2*100+te2*1000+tl2*25000
 #doud
 tl3=0
