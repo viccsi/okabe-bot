@@ -227,6 +227,40 @@ async def top(ctx):
     embed.add_field(name="#4 " f"{name4}", value=f"{n4}" " pts", inline=False)
     await ctx.send(embed=embed)   
 
+#SCORE
+@bot.command()
+async def score(ctx):
+    global user_id
+    global author_id
+    global tl
+    global te
+    global ttr
+    global tr
+    global tpc
+    global exp
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    exp = collection.find(user_id)
+    for tl in exp:
+        cur_tl = tl["tl"]
+    exp = collection.find(user_id)
+    for te in exp:
+        cur_te = te["te"]
+    exp = collection.find(user_id)
+    for ttr in exp:
+        cur_ttr = ttr["ttr"]
+    exp = collection.find(user_id)
+    for tr in exp:
+        cur_tr = tr["tr"]
+    exp = collection.find(user_id)
+    for tpc in exp:
+        cur_tpc = tpc["tpc"]
+    s=cur_tpc*1+cur_tr*10+cur_ttr*100+cur_te*1000+cur_tl*25000
+    embed=discord.Embed(title=" ━━━━━", color=0x636363)
+    embed.set_author(name="SCORE 🏆")
+    embed.add_field(name="You have:", value=f"{s}" " pts", inline=False)
+    await ctx.send(embed=embed)
+      
 #PROBA
 liste = (range(1000000))
 liste0 = (range(1000))
