@@ -13,7 +13,7 @@ global cluster
 global db
 mango_url = "mongodb+srv://Vicsi:RafaVic1!@cluster0.2ohdo.mongodb.net/?retryWrites=true&w=majority"
 cluster = MongoClient(mango_url)
-db = cluster["TestData"]
+db = cluster["OkabeData"]
 collection = db["new"]
    
 @bot.event
