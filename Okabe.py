@@ -7,17 +7,15 @@ from discord.ext import commands
 from discord.ext.commands import cooldown, BucketType
 
 bot = commands.Bot(command_prefix = "!", description = "Bot by Vic")
-
 global collection
 global mango_url
 global cluster
 global db
 mango_url = "mongodb+srv://Vicsi:RafaVic1!@cluster0.2ohdo.mongodb.net/?retryWrites=true&w=majority"
 cluster = MongoClient(mango_url)
-db = cluster["OkabeData"]
+db = cluster["TestData"]
 collection = db["new"]
-
-
+   
 @bot.event
 async def on_ready():
     print("Ready !")
@@ -34,7 +32,7 @@ async def start(ctx):
     if ctx.author.bot:
         return
     if(collection.count_documents({}) == 0):
-        user_info = {"_id": author_id, "money":0}
+        user_info = {"_id": author_id, "tpc": 0, "tr": 0, "ttr": 0, "te": 0, "tl": 0, "money": 0}
         collection.insert_one(user_info)
     await ctx.channel.send("Your account have been created")
     
@@ -97,14 +95,41 @@ s4=tpc4*1+tr4*10+ttr4*100+te4*1000+tl4*25000
 
 #COLLECTION
 @bot.command()
-async def collection1(ctx):
+async def Collection(ctx):
+    global user_id
+    global author_id
+    global tl
+    global te
+    global ttr
+    global tr
+    global tpc
+    global exp
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    name = await bot.fetch_user(author_id)
+    print(name)
+    exp = collection.find(user_id)
+    for tl in exp:
+        cur_tl = tl["tl"]
+    exp = collection.find(user_id)
+    for te in exp:
+        cur_te = te["te"]
+    exp = collection.find(user_id)
+    for ttr in exp:
+        cur_ttr = ttr["ttr"]
+    exp = collection.find(user_id)
+    for tr in exp:
+        cur_tr = tr["tr"]
+    exp = collection.find(user_id)
+    for tpc in exp:
+        cur_tpc = tpc["tpc"]
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
-    embed.set_author(name="COLLECTION - Vic 📚")
-    embed.add_field(name="🟡 Légendaire", value="Total:" f"{tl1}" " Différents:0/2", inline=False)
-    embed.add_field(name="🟣 Epique", value="Total:" f"{te1}" " Différents:0/3", inline=False)
-    embed.add_field(name="🟢 Très Rare", value="Total:" f"{ttr1}" " Différents:[5/5]", inline=False)
-    embed.add_field(name="🟠 Rare", value="Total:" f"{tr1}" " Différents:[7/7]", inline=False)
-    embed.add_field(name="🔵 Peu commun", value="Total:" f"{tpc1}" " Différents:[12/12]", inline=False)
+    embed.set_author(name="COLLECTION " f"{name}" " 📚")
+    embed.add_field(name="🟡 Légendaire", value="Total:" f"{cur_tl}" " Différents:0/2", inline=False)
+    embed.add_field(name="🟣 Epique", value="Total:" f"{cur_te}" " Différents:0/3", inline=False)
+    embed.add_field(name="🟢 Très Rare", value="Total:" f"{cur_ttr}" " Différents:0/5", inline=False)
+    embed.add_field(name="🟠 Rare", value="Total:" f"{cur_tr}" " Différents:0/7", inline=False)
+    embed.add_field(name="🔵 Peu commun", value="Total:" f"{cur_tpc}" " Différents:0/12", inline=False)
     await ctx.send(embed=embed)
 @bot.command()
 async def collection2(ctx):
@@ -222,11 +247,21 @@ opi=0
 @bot.command()
 async def drop(ctx):
     global new_money
+    global new_tpc
+    global new_tr
+    global new_ttr
+    global new_te
+    global new_tl
     global user_id
     global author_id
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     new_money=0
+    new_tpc=0
+    new_tr=0
+    new_ttr=0
+    new_te=0
+    new_tl=0
     exp = collection.find(user_id)
     for money in exp:
         cur_money = money["money"]
@@ -250,8 +285,12 @@ async def drop(ctx):
     if b==144078:
         print(b, ": légendaire")
         embed=discord.Embed(title=h, color=0xfff829)
+        exp = collection.find(user_id)
+        for tl in exp:
+            cur_tl = tl["tl"]
+            new_tl = cur_tl + 1
+        collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
         await ctx.send(embed=embed)
-        await ctx.send("tag @Vic pour avoir ce message dans ta collection ! (légendaire)")
         if nb==500:
             print("-> giftx3!")
             embed=discord.Embed(title="🎁 Gift x3 ! (fais vite la commande `!pack`)", color=0xffffff)
@@ -260,8 +299,12 @@ async def drop(ctx):
     elif 20<=b<=35:
         print(b, ": épique")
         embed=discord.Embed(title=g, color=0xc955d8)
+        exp = collection.find(user_id)
+        for te in exp:
+            cur_te = te["te"]
+            new_te = cur_te + 1
+        collection.update_one({"_id": author_id}, {"$set":{"te":new_te}}, upsert=True)
         await ctx.send(embed=embed)
-        await ctx.send("tag @Vic pour avoir ce message dans ta collection ! épique)")
         if nb==500:
             print("-> gift!")
             embed=discord.Embed(title="🎁 Gift ! (fais vite la commande `!pack`)", color=0xffffff)
@@ -270,6 +313,11 @@ async def drop(ctx):
     elif 1400<=b<=1600:
         print(b, ": très rare")
         embed=discord.Embed(title=f, color=0x35d070)
+        exp = collection.find(user_id)
+        for ttr in exp:
+            cur_ttr = ttr["ttr"]
+            new_ttr = cur_ttr + 1
+        collection.update_one({"_id": author_id}, {"$set":{"ttr":new_ttr}}, upsert=True)
         await ctx.send(embed=embed)
         if nb==500:
             print("-> gift!")
@@ -279,6 +327,11 @@ async def drop(ctx):
     elif 45033<=b<=46533:
         print(b, ": rare")
         embed=discord.Embed(title=e, color=0xf4911f)
+        exp = collection.find(user_id)
+        for tr in exp:
+            cur_tr = tr["tr"]
+            new_tr = cur_tr + 1
+        collection.update_one({"_id": author_id}, {"$set":{"tr":new_tr}}, upsert=True)
         await ctx.send(embed=embed)
         if nb==500:
             print("-> gift!")
@@ -288,6 +341,11 @@ async def drop(ctx):
     elif 345500<=b<=355550:
         print(b, ": peu commun")
         embed=discord.Embed(title=d, color=0x5aa7ce)
+        exp = collection.find(user_id)
+        for tpc in exp:
+            cur_tpc = tpc["tpc"]
+            new_tpc = cur_tpc + 1
+        collection.update_one({"_id": author_id}, {"$set":{"tpc":new_tpc}}, upsert=True)
         await ctx.send(embed=embed)
         if nb==500:
             print("-> gift!")
@@ -316,6 +374,7 @@ async def drop(ctx):
                 await ctx.send(embed=embed)
                 ope=ope+3
     
+
 #SHOP
 @bot.command()
 async def shop(ctx):
@@ -417,18 +476,38 @@ async def pack(ctx):
         elif 2500<nb<8400:
             print("gift : peu commun")
             embed=discord.Embed(title=d, color=0x5aa7ce)
+            exp = collection.find(user_id)
+            for tpc in exp:
+                cur_tpc = tpc["tpc"]
+                new_tpc = cur_tpc + 1
+            collection.update_one({"_id": author_id}, {"$set":{"tpc":new_tpc}}, upsert=True)
             await ctx.send(embed=embed)
         elif 8400<=nb<=9835:
             print("gift : rare")
             embed=discord.Embed(title=e, color=0xf4911f)
+            exp = collection.find(user_id)
+            for tr in exp:
+                cur_tr = tr["tr"]
+                new_tr = cur_tr + 1
+            collection.update_one({"_id": author_id}, {"$set":{"tr":new_tr}}, upsert=True)
             await ctx.send(embed=embed)
         elif 9835<nb<=9993:
             print("gift : très rare")
             embed=discord.Embed(title=f, color=0x35d070)
+            exp = collection.find(user_id)
+            for ttr in exp:
+                cur_ttr = ttr["ttr"]
+                new_ttr = cur_ttr + 1
+            collection.update_one({"_id": author_id}, {"$set":{"ttr":new_ttr}}, upsert=True)
             await ctx.send(embed=embed)
         elif 9993<nb<10000:
             print(b, ": épique")
             embed=discord.Embed(title=g, color=0xc955d8)
+            exp = collection.find(user_id)
+            for te in exp:
+                cur_te = te["te"]
+                new_te = cur_te + 1
+            collection.update_one({"_id": author_id}, {"$set":{"te":new_te}}, upsert=True)
             await ctx.send(embed=embed)
             await ctx.send("tag @Vic pour avoir ce message dans ta collection ! (épique)")
         elif nb==10000:
@@ -443,7 +522,12 @@ async def pack(ctx):
         if nb<6000:
             print("mega gift : très rare")
             embed=discord.Embed(title=f, color=0x35d070)
-            await ctx.send(embed=embed) 
+            exp = collection.find(user_id)
+            for ttr in exp:
+                cur_ttr = ttr["ttr"]
+                new_ttr = cur_ttr + 1
+            collection.update_one({"_id": author_id}, {"$set":{"ttr":new_ttr}}, upsert=True)
+            await ctx.send(embed=embed)      
         elif 6000<=nb<8000:
             print("-> giftx10!")
             embed=discord.Embed(title="🎁 Gift x10 ! (fais vite la commande `!pack`)", color=0xffffff)
@@ -452,11 +536,21 @@ async def pack(ctx):
         elif 8000<=nb<=9800:
             print("mega gift : épique")
             embed=discord.Embed(title=g, color=0xc955d8)
+            exp = collection.find(user_id)
+            for te in exp:
+                cur_te = te["te"]
+                new_te = cur_te + 1
+            collection.update_one({"_id": author_id}, {"$set":{"te":new_te}}, upsert=True)
             await ctx.send(embed=embed)
             await ctx.send("tag @Vic pour avoir ce message dans ta collection ! épique)")
         elif 9800<nb<9900:
             print("mega gift : légendaire")
             embed=discord.Embed(title=h, color=0xfff829)
+            exp = collection.find(user_id)
+            for tl in exp:
+                cur_tl = tl["tl"]
+                new_tl = cur_tl + 1
+            collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
             await ctx.send(embed=embed)
             await ctx.send("tag @Vic pour avoir ce message dans ta collection ! (légendaire)")
         elif 9900<=nb<=10000:
@@ -467,6 +561,7 @@ async def pack(ctx):
     else:
         embed=discord.Embed(title="❌ There isn't any gift ❌", color=0x636363)
         await ctx.send(embed=embed)
+
 
 
 
