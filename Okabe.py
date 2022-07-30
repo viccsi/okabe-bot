@@ -323,7 +323,7 @@ async def shop(ctx):
     embed.set_author(name="SHOP 🛒️")
     embed.add_field(name="1) 2x gifts 🎁", value="250 💰", inline=False)
     embed.add_field(name="2) 5x gifts 🎁", value="500 💰", inline=False)
-    embed.add_field(name="3) MEGA gift 🎁", value="10000 💰", inline=False)
+    embed.add_field(name="3) MEGA gift 🎁", value="7500 💰", inline=False)
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_1(ctx):
@@ -377,9 +377,9 @@ async def buy_3(ctx):
     exp = collection.find(user_id)
     for money in exp:
         cur_money = money["money"]
-    if cur_money>=10000:
+    if cur_money>=7500:
         embed=discord.Embed(title="You buy 🎁 MEGA Gift !", color=0xffffff)
-        new_money = cur_money - 10000
+        new_money = cur_money - 7500
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         opi=opi+1
     else:
