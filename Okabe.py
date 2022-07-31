@@ -520,7 +520,7 @@ async def buy_3(ctx):
             c_i3 = itr
         else:
             c_i3 = ie
-        embed=discord.Embed(title=f"{c_i1}" f"{c_i2}" f"{c_i3}", color=0xffffff)
+        embed=discord.Embed(title=f"{c_i1}" f"{c_i2}" f"{c_i3}" "-> !invocation", color=0xffffff)
     else:
         embed=discord.Embed(title="You don't have enough money !", color=0x636363)
     await ctx.send(embed=embed)
