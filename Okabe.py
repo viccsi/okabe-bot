@@ -332,7 +332,7 @@ async def drop(ctx):
             embed=discord.Embed(title="🎁 Gift x3 ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
             ope=ope+3
-    elif 20<=b<=35:
+    elif 20<=b<=40:
         print(b, ": épique")
         embed=discord.Embed(title=g, color=0xc955d8)
         exp = collection.find(user_id)
@@ -346,7 +346,7 @@ async def drop(ctx):
             embed=discord.Embed(title="🎁 Gift ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
             ope=ope+1
-    elif 1400<=b<=1600:
+    elif 1400<=b<=1700:
         print(b, ": très rare")
         embed=discord.Embed(title=f, color=0x35d070)
         exp = collection.find(user_id)
@@ -388,7 +388,7 @@ async def drop(ctx):
             embed=discord.Embed(title="🎁 Gift ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
             ope=ope+1
-    elif b==0 or b==1000000:
+    elif b==0 or b==10 or b==1000000:
         print("-> mega gift!")
         embed=discord.Embed(title="🎁 MEGA Gift ! (fais vite la commande `!pack`)", color=0xffffff)
         await ctx.send(embed=embed)
