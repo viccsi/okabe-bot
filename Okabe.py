@@ -474,9 +474,9 @@ async def buy_3(ctx):
     exp = collection.find(user_id)
     for money in exp:
         cur_money = money["money"]
-    if cur_money>=2:
+    if cur_money>=2500:
         embed=discord.Embed(title="You buy 🎁 Gift x2 !", color=0xffffff)
-        new_money = cur_money - 2
+        new_money = cur_money - 2500
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         global c_i1
         global c_i2
@@ -536,9 +536,9 @@ async def buy_4(ctx):
     exp = collection.find(user_id)
     for money in exp:
         cur_money = money["money"]
-    if cur_money>=7500:
+    if cur_money>=6000:
         embed=discord.Embed(title="You buy 🎁 MEGA Gift !", color=0xffffff)
-        new_money = cur_money - 7500
+        new_money = cur_money - 6000
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         opi=opi+1
     else:
