@@ -279,6 +279,7 @@ rec = (range(10000))
 hey=0
 ope=0
 opi=0
+nb_inv=0
 @bot.command()
 async def drop(ctx):
     global new_money
@@ -417,7 +418,9 @@ async def shop(ctx):
     embed.set_author(name="SHOP 🛒️")
     embed.add_field(name="1) 2x gifts 🎁", value="250 💰", inline=False)
     embed.add_field(name="2) 5x gifts 🎁", value="500 💰", inline=False)
-    embed.add_field(name="3) MEGA gift 🎁", value="7500 💰", inline=False)
+    embed.add_field(name="3) Invocation ☄", value="2500 💰", inline=False)
+    embed.add_field(name="4) MEGA gift 🎁", value="6000 💰", inline=False)
+    embed.add_field(name="5) Invocation divine ☄", value="10000 💰", inline=False)
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_1(ctx):
@@ -461,6 +464,68 @@ async def buy_2(ctx):
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_3(ctx):
+    global user_id
+    global author_id
+    global new_money
+    global ope
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    new_money=0
+    exp = collection.find(user_id)
+    for money in exp:
+        cur_money = money["money"]
+    if cur_money>=2:
+        embed=discord.Embed(title="You buy 🎁 Gift x2 !", color=0xffffff)
+        new_money = cur_money - 2
+        collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
+        global c_i1
+        global c_i2
+        global c_i3
+        global nb_inv
+        global ipc
+        global ir
+        global itr
+        global ie
+        nb_inv = nb_inv+1
+        ipc = "🔵"
+        ir = "🟠"
+        itr = "🟢" 
+        ie = "🟣"
+        il = "✨"
+        inv = (range(10000))
+        ch_i1 = choice(inv)
+        if 0<=ch_i1<=3000 or 7000<=ch_i1<=9000:
+            c_i1 = ipc
+        elif 3000<ch_i1<=5000 or 5500<=ch_i1<7000 or 9000<ch_i1<=9800:
+            c_i1 = ir
+        elif 5000<ch_i1<=5450 or 9850<=ch_i1<=10000:
+            c_i1 = itr
+        else:
+            c_i1 = ie   
+        ch_i2 = choice(inv)
+        if 0<=ch_i2<=3000 or 7000<=ch_i2<=9000:
+            c_i2 = ipc
+        elif 3000<ch_i2<=5000 or 5500<=ch_i2<7000 or 9000<ch_i2<=9800:
+            c_i2 = ir
+        elif 5000<ch_i2<=5450 or 9850<=ch_i2<=10000:
+            c_i2 = itr
+        else:
+            c_i2 = ie           
+        ch_i3 = choice(inv)
+        if 0<=ch_i3<=3000 or 7000<=ch_i3<=9000:
+            c_i3 = ipc
+        elif 3000<ch_i3<=5000 or 5500<=ch_i3<7000 or 9000<ch_i3<=9800:
+            c_i3 = ir
+        elif 5000<ch_i3<=5450 or 9850<=ch_i3<=10000:
+            c_i3 = itr
+        else:
+            c_i3 = ie
+        embed=discord.Embed(title=f"{c_i1}" f"{c_i2}" f"{c_i3}", color=0xffffff)
+    else:
+        embed=discord.Embed(title="You don't have enough money !", color=0x636363)
+    await ctx.send(embed=embed)
+@bot.command()
+async def buy_4(ctx):
     global opi
     global user_id
     global author_id
@@ -480,7 +545,148 @@ async def buy_3(ctx):
         embed=discord.Embed(title="You don't have enough money !", color=0x636363)
     await ctx.send(embed=embed)
 
+#INVOCATION
+@bot.command()
+async def invocation(ctx):
+    global c_i1
+    global c_i2
+    global c_i3
+    global nb_inv
+    global new_tpc
+    global new_tr
+    global new_ttr
+    global new_te
+    global new_tl
+    global ipc
+    global ir
+    global itr
+    global ie
+    global user_id
+    global author_id
+    global tl
+    global te
+    global ttr
+    global tr
+    global tpc
+    global exp
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    if nb_inv>=1:
+        nb_inv=nb_inv-1
+        h = choice(légendaire)
+        if c_i1 == ipc:
+            d = choice(peucommun)
+            embed=discord.Embed(title=d, color=0x5aa7ce)
+            exp = collection.find(user_id)
+            for tpc in exp:
+                cur_tpc = tpc["tpc"]
+                new_tpc = cur_tpc + 1
+            collection.update_one({"_id": author_id}, {"$set":{"tpc":new_tpc}}, upsert=True)
+            await ctx.send(embed=embed)
+        elif c_i1 == ir:
+            e = choice(rare)
+            embed=discord.Embed(title=e, color=0xf4911f)
+            exp = collection.find(user_id)
+            for tr in exp:
+                cur_tr = tr["tr"]
+                new_tr = cur_tr + 1
+            collection.update_one({"_id": author_id}, {"$set":{"tr":new_tr}}, upsert=True)
+            await ctx.send(embed=embed)
+        elif c_i1 == itr:
+            f = choice(tresrare)
+            embed=discord.Embed(title=f, color=0x35d070)
+            exp = collection.find(user_id)
+            for ttr in exp:
+                cur_ttr = ttr["ttr"]
+                new_ttr = cur_ttr + 1
+            collection.update_one({"_id": author_id}, {"$set":{"ttr":new_ttr}}, upsert=True)
+            await ctx.send(embed=embed)
+        else:
+            g = choice(épique)
+            embed=discord.Embed(title=g, color=0xc955d8)
+            exp = collection.find(user_id)
+            for te in exp:
+                cur_te = te["te"]
+                new_te = cur_te + 1
+            collection.update_one({"_id": author_id}, {"$set":{"te":new_te}}, upsert=True)
+            await ctx.send(embed=embed)
+        if c_i2 == ipc:
+            d = choice(peucommun)
+            embed=discord.Embed(title=d, color=0x5aa7ce)
+            exp = collection.find(user_id)
+            for tpc in exp:
+                cur_tpc = tpc["tpc"]
+                new_tpc = cur_tpc + 1
+            collection.update_one({"_id": author_id}, {"$set":{"tpc":new_tpc}}, upsert=True)
+            await ctx.send(embed=embed)
+        elif c_i2 == ir:
+            e = choice(rare)
+            embed=discord.Embed(title=e, color=0xf4911f)
+            exp = collection.find(user_id)
+            for tr in exp:
+                cur_tr = tr["tr"]
+                new_tr = cur_tr + 1
+            collection.update_one({"_id": author_id}, {"$set":{"tr":new_tr}}, upsert=True)
+            await ctx.send(embed=embed)
+        elif c_i2 == itr:
+            f = choice(tresrare)
+            embed=discord.Embed(title=f, color=0x35d070)
+            exp = collection.find(user_id)
+            for ttr in exp:
+                cur_ttr = ttr["ttr"]
+                new_ttr = cur_ttr + 1
+            collection.update_one({"_id": author_id}, {"$set":{"ttr":new_ttr}}, upsert=True)
+            await ctx.send(embed=embed)
+        else:
+            g = choice(épique)
+            embed=discord.Embed(title=g, color=0xc955d8)
+            exp = collection.find(user_id)
+            for te in exp:
+                cur_te = te["te"]
+                new_te = cur_te + 1
+            collection.update_one({"_id": author_id}, {"$set":{"te":new_te}}, upsert=True)
+            await ctx.send(embed=embed)
+        if c_i3 == ipc:
+            d = choice(peucommun)
+            embed=discord.Embed(title=d, color=0x5aa7ce)
+            exp = collection.find(user_id)
+            for tpc in exp:
+                cur_tpc = tpc["tpc"]
+                new_tpc = cur_tpc + 1
+            collection.update_one({"_id": author_id}, {"$set":{"tpc":new_tpc}}, upsert=True)
+            await ctx.send(embed=embed)
+        elif c_i3 == ir:
+            e = choice(rare)
+            embed=discord.Embed(title=e, color=0xf4911f)
+            exp = collection.find(user_id)
+            for tr in exp:
+                cur_tr = tr["tr"]
+                new_tr = cur_tr + 1
+            collection.update_one({"_id": author_id}, {"$set":{"tr":new_tr}}, upsert=True)
+            await ctx.send(embed=embed)
+        elif c_i3 == itr:
+            f = choice(tresrare)
+            embed=discord.Embed(title=f, color=0x35d070)
+            exp = collection.find(user_id)
+            for ttr in exp:
+                cur_ttr = ttr["ttr"]
+                new_ttr = cur_ttr + 1
+            collection.update_one({"_id": author_id}, {"$set":{"ttr":new_ttr}}, upsert=True)
+            await ctx.send(embed=embed)
+        else:
+            g = choice(épique)
+            embed=discord.Embed(title=g, color=0xc955d8)
+            exp = collection.find(user_id)
+            for te in exp:
+                cur_te = te["te"]
+                new_te = cur_te + 1
+            collection.update_one({"_id": author_id}, {"$set":{"te":new_te}}, upsert=True)
+            await ctx.send(embed=embed)       
+    else:
+        embed=discord.Embed(title="❌ You haven't invocation ❌", color=0x636363)
+        await ctx.send(embed=embed)
 
+   
 #GIFT
 @bot.command()
 async def pack(ctx):
