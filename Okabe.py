@@ -409,7 +409,158 @@ async def drop(ctx):
                 embed=discord.Embed(title="🎁 Gift x3 (fais vite la commande `!pack`)", color=0xffffff)
                 await ctx.send(embed=embed)
                 ope=ope+3
-    
+
+
+
+#DAILY
+@bot.command()
+@cooldown(1, 86400, BucketType.user)
+async def daily(ctx): 
+    global nb_da
+    global new_tpc
+    global new_tr
+    global new_ttr
+    global new_te
+    global user_id
+    global author_id
+    global te
+    global ttr
+    global tr
+global tpc
+    global exp
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    ti_da_1 = range(90)
+    ti_da_2 = range(250)
+    ti_da_3 = range(500)
+    ti_da_4 = range(1500)
+    nb_mo_1 = choice(ti_da_1) + 10
+    nb_mo_2 = choice(ti_da_2) + 250
+    nb_mo_3 = choice(ti_da_3) + 500
+    nb_mo_4 = choice(ti_da_4) + 1500
+    nb_da = choice(rec) 
+    elif 0<=nb_da<=300:
+        exp = collection.find(user_id)
+        for money in exp:
+            cur_money = money["money"]
+            new_money = cur_money + nb_mo_1
+        collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
+        embed=discord.Embed(title="+" f"{nb_mo_1}" " 💰", color=0xffffff)
+        await ctx.send(embed=embed)
+    elif 300<nb_da<=600:
+        d = choice(peucommun)
+        embed=discord.Embed(title=d, color=0x5aa7ce)
+        exp = collection.find(user_id)
+        for tpc in exp:
+            cur_tpc = tpc["tpc"]
+            new_tpc = cur_tpc + 1
+        collection.update_one({"_id": author_id}, {"$set":{"tpc":new_tpc}}, upsert=True)
+        await ctx.send(embed=embed)
+    elif 600<nb_da<=750
+        e = choice(rare)
+        embed=discord.Embed(title=e, color=0xf4911f)
+        exp = collection.find(user_id)
+        for tr in exp:
+            cur_tr = tr["tr"]
+            new_tr = cur_tr + 1
+        collection.update_one({"_id": author_id}, {"$set":{"tr":new_tr}}, upsert=True)
+        await ctx.send(embed=embed)
+    elif 750<nb_da<=850:
+        exp = collection.find(user_id)
+        for money in exp:
+            cur_money = money["money"]
+            new_money = cur_money + nb_mo_2
+        collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
+        embed=discord.Embed(title="+" f"{nb_mo_2}" " 💰", color=0xffffff)
+        await ctx.send(embed=embed)
+    elif 850<nb_da<=950:
+        embed=discord.Embed(title="🎁 Gift x3 (fais vite la commande `!pack`)", color=0xffffff)
+        await ctx.send(embed=embed)
+        ope=ope+3
+    elif 950<nb_da<=980:
+        f = choice(tresrare)
+        embed=discord.Embed(title=f, color=0x35d070)
+        exp = collection.find(user_id)
+        for ttr in exp:
+            cur_ttr = ttr["ttr"]
+            new_ttr = cur_ttr + 1
+        collection.update_one({"_id": author_id}, {"$set":{"ttr":new_ttr}}, upsert=True)
+        await ctx.send(embed=embed)
+    elif 980<nb_da<=990:
+        exp = collection.find(user_id)
+        for money in exp:
+            cur_money = money["money"]
+            new_money = cur_money + nb_mo_3
+        collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
+        embed=discord.Embed(title="+" f"{nb_mo_3}" " 💰", color=0xffffff)
+        await ctx.send(embed=embed)
+    elif 990<nb_da<=995:
+        global c_i1
+        global c_i2
+        global c_i3
+        global nb_inv
+        global ipc
+        global ir
+        global itr
+        global ie
+        nb_inv = nb_inv+1
+        ipc = "🔵"
+        ir = "🟠"
+        itr = "🟢" 
+        ie = "🟣"
+        il = "✨"
+        inv = (range(10000))
+        ch_i1 = choice(inv)
+        if 0<=ch_i1<=3000 or 7000<=ch_i1<=9000:
+            c_i1 = ipc
+        elif 3000<ch_i1<=5000 or 5500<=ch_i1<7000 or 9000<ch_i1<=9800:
+            c_i1 = ir
+        elif 5000<ch_i1<=5450 or 9850<=ch_i1<=10000:
+            c_i1 = itr
+        else:
+            c_i1 = ie   
+        ch_i2 = choice(inv)
+        if 0<=ch_i2<=3000 or 7000<=ch_i2<=9000:
+            c_i2 = ipc
+        elif 3000<ch_i2<=5000 or 5500<=ch_i2<7000 or 9000<ch_i2<=9800:
+            c_i2 = ir
+        elif 5000<ch_i2<=5450 or 9850<=ch_i2<=10000:
+            c_i2 = itr
+        else:
+            c_i2 = ie           
+        ch_i3 = choice(inv)
+        if 0<=ch_i3<=3000 or 7000<=ch_i3<=9000:
+            c_i3 = ipc
+        elif 3000<ch_i3<=5000 or 5500<=ch_i3<7000 or 9000<ch_i3<=9800:
+            c_i3 = ir
+        elif 5000<ch_i3<=5450 or 9850<=ch_i3<=10000:
+            c_i3 = itr
+    elif 995<nb_da<=998:
+        exp = collection.find(user_id)
+        for money in exp:
+            cur_money = money["money"]
+        new_money = cur_money + nb_mo_4
+        collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
+        embed=discord.Embed(title="+" f"{nb_mo_4}" " 💰", color=0xffffff)
+        await ctx.send(embed=embed)
+        else:
+            c_i3 = ie
+        embed=discord.Embed(title=f"{c_i1}" f"{c_i2}" f"{c_i3}" "-> !invocation", color=0xffffff)
+    else:
+        g = choice(épique)
+        embed=discord.Embed(title=g, color=0xc955d8)
+        exp = collection.find(user_id)
+        for te in exp:
+            cur_te = te["te"]
+        new_te = cur_te + 1
+        collection.update_one({"_id": author_id}, {"$set":{"te":new_te}}, upsert=True)
+        await ctx.send(embed=embed)
+
+@daily.error
+async def command_daily_error(ctx, error):
+    if isinstance(error, commands.CommandOnCooldown):
+        em = discord.Embed(title=f"Pas de ``daily`` disponible!",description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
+        await ctx.send(embed=embed)    
 
 #SHOP
 @bot.command()
