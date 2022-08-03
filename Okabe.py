@@ -426,7 +426,7 @@ async def daily(ctx):
     global te
     global ttr
     global tr
-global tpc
+    global tpc
     global exp
     author_id = ctx.author.id
     user_id = {"_id": author_id}
