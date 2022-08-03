@@ -626,7 +626,6 @@ async def buy_3(ctx):
     for money in exp:
         cur_money = money["money"]
     if cur_money>=2000:
-        embed=discord.Embed(title="You buy 🎁 Gift x2 !", color=0xffffff)
         new_money = cur_money - 2000
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         global c_i1
