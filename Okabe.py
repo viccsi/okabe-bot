@@ -403,6 +403,16 @@ async def drop(ctx):
                 embed=discord.Embed(title="🎁 Gift ! (fais vite la commande `!pack`)", color=0xffffff)
                 await ctx.send(embed=embed)
                 ope=ope+1
+            if 700<=nb<=800:
+                print("-> gift!", nb)
+                embed=discord.Embed(title="+10 💰 Sac d'or !", color=0xffffff)
+                await ctx.send(embed=embed)
+                nb_mo_1 = 10
+                exp = collection.find(user_id)
+                for money in exp:
+                  cur_money = money["money"]
+                  new_money = cur_money + nb_mo_1
+                collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
             if 0<=nb<=10 or nb==1000:
                 print("-> gift!x3")
                 embed=discord.Embed(title="🎁 Gift x3 (fais vite la commande `!pack`)", color=0xffffff)
