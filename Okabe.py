@@ -669,7 +669,7 @@ async def buy_5(ctx):
 
 #INVOCATION
 @bot.command()
-async def invocation_divine(ctx):
+async def invocation(ctx):
     global c_i1
     global c_i2
     global c_i3
