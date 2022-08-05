@@ -816,7 +816,7 @@ async def daily(ctx):
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         embed=discord.Embed(title="+" f"{nb_mo_4}" " 💰", color=0xffffff)
         await ctx.send(embed=embed)
-    else:
+    elif 9980<nb_da<=10000:
         g = choice(épique)
         embed=discord.Embed(title=g, color=0xc955d8)
         exp = collection.find(user_id)
