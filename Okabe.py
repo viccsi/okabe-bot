@@ -429,7 +429,7 @@ async def drop(ctx):
                 print("-> gift!", nb)
                 embed=discord.Embed(title="Diamant 💎 ! +100 💰", color=0xffffff)
                 await ctx.send(embed=embed)
-                nb_mo_1 = 50
+                nb_mo_1 = 100
                 exp = collection.find(user_id)
                 for money in exp:
                   cur_money = money["money"]
