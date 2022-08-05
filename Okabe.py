@@ -31,9 +31,8 @@ async def start(ctx):
         return
     if ctx.author.bot:
         return
-    if(collection.count_documents({}) == 0):
-        user_info = {"_id": author_id, "tpc": 0, "tr": 0, "ttr": 0, "te": 0, "tl": 0, "money": 0}
-        collection.insert_one(user_info)
+    user_info = {"_id": author_id, "tpc": 0, "tr": 0, "ttr": 0, "te": 0, "tl": 0, "money": 0}
+    collection.insert_one(user_info)
     await ctx.channel.send("Your account have been created")
     
 #HOW TO PLAY  
