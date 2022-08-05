@@ -405,7 +405,7 @@ async def drop(ctx):
                 ope=ope+1
             if 700<=nb<=800:
                 print("-> gift!", nb)
-                embed=discord.Embed(title="+10 💰 Sac d'or !", color=0xffffff)
+                embed=discord.Embed(title="Sac d'or ! +10 💰", color=0xffffff)
                 await ctx.send(embed=embed)
                 nb_mo_1 = 10
                 exp = collection.find(user_id)
