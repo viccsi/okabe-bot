@@ -700,6 +700,7 @@ async def daily(ctx):
     global tr
     global tpc
     global exp
+    global ope
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     ti_da_1 = range(90)
