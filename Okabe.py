@@ -610,58 +610,58 @@ async def buy_5(ctx):
         ch_i1 = choice(inv)
         if 0<=ch_i1<=2000:
             c_i1 = ipc
-        elif 2000<ch_i1<=5000:
+        elif 2000<ch_i1<=5500:
             c_i1 = ir
-        elif 5000<ch_i1<8000 or 8950<=ch_i1<9050:
+        elif 5500<ch_i1<8000 or 8550<=ch_i1<10000:
             c_i1 = itr
-        elif 8000<ch_i1<=8500:
+        elif 8050<ch_i1<=8550:
             c_i1 = ie
-        else:
+        elif 8000<=ch_i1<=8050:
             c_i1 = il   
         ch_i2 = choice(inv)
         if 0<=ch_i2<=2000:
             c_i2 = ipc
-        elif 2000<ch_i2<=5000:
+        elif 2000<ch_i2<=5500:
             c_i2 = ir
-        elif 5000<ch_i2<8000 or 8950<=ch_i2<9050:
+        elif 5500<ch_i2<8000 or 8550<=ch_i1<10000:
             c_i2 = itr
-        elif 8000<ch_i2<=8500:
+        elif 8050<ch_i2<=8550:
             c_i2 = ie
-        else:
-            c_i2 = il     
+        elif 8000<=ch_i2<=8050:
+            c_i2 = il   
         ch_i3 = choice(inv)
         if 0<=ch_i3<=2000:
             c_i3 = ipc
-        elif 2000<ch_i3<=5000:
+        elif 2000<ch_i3<=5500:
             c_i3 = ir
-        elif 5000<ch_i3<8000 or 8950<=ch_i3<9050:
-            c_i2 = itr
-        elif 8000<ch_i3<=8500:
+        elif 5500<ch_i3<8000 or 8550<=ch_i3<10000:
+            c_i3 = itr
+        elif 8050<ch_i3<=8550:
             c_i3 = ie
-        else:
-            c_i3 = il
+        elif 8000<=ch_i3<=8050:
+            c_i3 = il 
         ch_i4 = choice(inv)
         if 0<=ch_i4<=2000:
             c_i4 = ipc
-        elif 2000<ch_i4<=5000:
+        elif 2000<ch_i4<=5500:
             c_i4 = ir
-        elif 5000<ch_i4<8000 or 8950<=ch_i4<9050:
+        elif 5500<ch_i4<8000 or 8550<=ch_i1<10000:
             c_i4 = itr
-        elif 8000<ch_i4<=8500:
+        elif 8050<ch_i4<=8550:
             c_i4 = ie
-        else:
-            c_i4 = il
+        elif 8000<=ch_i4<=8050:
+            c_i4 = il 
         ch_i5 = choice(inv)
         if 0<=ch_i5<=2000:
             c_i5 = ipc
-        elif 2000<ch_i5<=5000:
+        elif 2000<ch_i5<=5500:
             c_i5 = ir
-        elif 5000<ch_i5<8000 or 8950<=ch_i5<9050:
+        elif 5500<ch_i5<8000 or 8550<=ch_i1<10000:
             c_i5 = itr
-        elif 8000<ch_i5<=8500:
+        elif 8050<ch_i5<=8550:
             c_i5 = ie
-        else:
-            c_i5 = il
+        elif 8000<=ch_i5<=8050:
+            c_i5 = il 
         embed=discord.Embed(title=f"{c_i1}" f"{c_i2}" f"{c_i3}" f"{c_i4}" f"{c_i5}" "-> !invocation_divine", color=0xffffff)
     else:
         embed=discord.Embed(title="You don't have enough money !", color=0x636363)
