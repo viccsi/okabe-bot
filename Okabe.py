@@ -427,7 +427,7 @@ async def drop(ctx):
                 collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
             if nb==990:
                 print("-> gift!", nb)
-                embed=discord.Embed(title="Diamant 💎 ! +150 💰", color=0xffffff)
+                embed=discord.Embed(title="Diamant 💎 ! +200 💰", color=0xffffff)
                 await ctx.send(embed=embed)
                 nb_mo_1 = 150
                 exp = collection.find(user_id)
