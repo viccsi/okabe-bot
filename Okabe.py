@@ -1343,7 +1343,7 @@ async def dr0p(ctx):
    exp = collection.find(user_id)
    for tl in exp:
         cur_tl = tl["tl"]
-   if tl >= 1:
+   if cur_tl >= 1:
         z = choice(liste0)
             if 743<=z<=747:
                 print(z, ": Hououin Kyoumaaaa ``aka Mad Scientist``")
