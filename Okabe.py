@@ -40,7 +40,7 @@ async def command_start_error(ctx, error):
     
 #COMMANDS 
 @bot.command()
-async def commands(ctx):
+async def Commands(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
     embed.set_author(name="COMMANDS ⌨️")
     embed.add_field(name="!drop", value="Pour drop une réponse d'Okabe!", inline=False)
@@ -1327,7 +1327,7 @@ async def testing(ctx):
       embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━", color=0x636363)
       embed.set_author(name="🎉 You become a member of the labo !")
       embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
-      embed.add_field(name="New commands", value="make ``!c0mmands`` with a zero instead of an o", inline=False)
+      embed.add_field(name="New commands", value="make ``!C0mmands`` with a zero instead of an o", inline=False)
       await ctx.send(embed=embed)
       
 
@@ -1336,7 +1336,7 @@ async def testing(ctx):
 
 #C0MMANDS 
 @bot.command()
-async def c0mmands(ctx):
+async def C0mmands(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
     embed.set_author(name="C0MMANDS ⌨️")
     embed.add_field(name="!dr0p", value="Nécessite d'être membre du labo", inline=False)
@@ -1396,8 +1396,21 @@ async def dr0p(ctx):
 @dr0p.error
 async def command_dr0p_error(ctx, error):
    if isinstance(error, commands.CommandOnCooldown):
-      em = discord.Embed(title=f"Pas de ``dr0p`` disponible!",description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
-      await ctx.send(embed=em)
+      global user_id
+      global author_id
+      global cur_tl
+      author_id = ctx.author.id
+      user_id = {"_id": author_id} 
+      exp = collection.find(user_id)
+      for tl in exp:
+        cur_tl = tl["tl"]
+      if cur_tl >= 1:
+         em = discord.Embed(title=f"Pas de ``dr0p`` disponible!", description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
+         await ctx.send(embed=em)
+      else:
+         embed=discord.Embed(title="❌ You aren't a member of the labo ! ❌", color=0x636363)
+         await ctx.send(embed=embed) 
+
 
 
 #C0LLECTI0N
