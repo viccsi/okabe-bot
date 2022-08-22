@@ -471,7 +471,7 @@ async def buy_1(ctx):
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         ope=ope+1
     else:
-        embed=discord.Embed(title="You don't have enough money !", color=0x636363)
+        embed=discord.Embed(title="❌ You don't have enough money !", color=0x636363)
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_2(ctx):
@@ -491,7 +491,7 @@ async def buy_2(ctx):
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         ope=ope+3
     else:
-        embed=discord.Embed(title="You don't have enough money !", color=0x636363)
+        embed=discord.Embed(title="❌ You don't have enough money !", color=0x636363)
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_3(ctx):
@@ -552,7 +552,7 @@ async def buy_3(ctx):
             c_i3 = ie
         embed=discord.Embed(title=f"{c_i1}" f"{c_i2}" f"{c_i3}" "-> !invocation", color=0xffffff)
     else:
-        embed=discord.Embed(title="You don't have enough money !", color=0x636363)
+        embed=discord.Embed(title="❌ You don't have enough money !", color=0x636363)
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_4(ctx):
@@ -572,7 +572,7 @@ async def buy_4(ctx):
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         opi=opi+1
     else:
-        embed=discord.Embed(title="You don't have enough money !", color=0x636363)
+        embed=discord.Embed(title="❌ You don't have enough money !", color=0x636363)
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_5(ctx):
@@ -664,7 +664,7 @@ async def buy_5(ctx):
             c_i5 = il 
         embed=discord.Embed(title=f"{c_i1}" f"{c_i2}" f"{c_i3}" f"{c_i4}" f"{c_i5}" "-> !invocation_divine", color=0xffffff)
     else:
-        embed=discord.Embed(title="You don't have enough money !", color=0x636363)
+        embed=discord.Embed(title="❌ You don't have enough money !", color=0x636363)
     await ctx.send(embed=embed)
 
 #INVOCATION
@@ -1386,7 +1386,7 @@ async def dr0p(ctx):
          embed=discord.Embed(title="Nothing here...", color=0x8b8989)
          await ctx.send(embed=embed)
    else:
-      embed=discord.Embed(title="You aren't a member of the labo !", color=0x636363)
+      embed=discord.Embed(title="❌ You aren't a member of the labo ! ❌", color=0x636363)
       await ctx.send(embed=embed)
 @dr0p.error
 async def command_dr0p_error(ctx, error):
@@ -1402,7 +1402,7 @@ async def command_dr0p_error(ctx, error):
          em = discord.Embed(title=f"Pas de ``dr0p`` disponible!",description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
          await ctx.send(embed=em)
       else:
-         embed=discord.Embed(title="You aren't a member of the labo !", color=0x636363)
+         embed=discord.Embed(title="❌ You aren't a member of the labo ! ❌", color=0x636363)
          await ctx.send(embed=embed)
 
 #C0LLECTI0N
