@@ -595,7 +595,7 @@ async def buy_5(ctx):
             c_i2 = ipc
         elif 2000<ch_i2<=5500:
             c_i2 = ir
-        elif 5500<ch_i2<8000 or 8550<=ch_i1<10000:
+        elif 5500<ch_i2<8000 or 8550<=ch_i2<10000:
             c_i2 = itr
         elif 8050<ch_i2<=8550:
             c_i2 = ie
