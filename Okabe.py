@@ -68,16 +68,16 @@ async def reward(ctx):
 #vic
 tl1=0
 te1=0
-ttr1=17
-tr1=64
-tpc1=295
+ttr1=22
+tr1=78
+tpc1=391
 s1=tpc1*1+tr1*10+ttr1*100+te1*1000+tl1*25000
 #theo
 tl2=0
 te2=0
-ttr2=6
-tr2=73
-tpc2=313
+ttr2=7
+tr2=95
+tpc2=397
 s2=tpc2*1+tr2*10+ttr2*100+te2*1000+tl2*25000
 #doud
 tl3=0
@@ -89,9 +89,9 @@ s3=tpc3*1+tr3*10+ttr3*100+te3*1000+tl3*25000
 #loujok
 tl4=0
 te4=0
-ttr4=7
-tr4=37
-tpc4=163
+ttr4=8
+tr4=59
+tpc4=249
 s4=tpc4*1+tr4*10+ttr4*100+te4*1000+tl4*25000
 
 
