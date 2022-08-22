@@ -35,9 +35,9 @@ async def start(ctx):
       user_id = {"_id": author_id}
       collection.insert_one(user_id)
       user_co = {"tpc": 0, "tr": 0, "ttr": 0, "te": 0, "tl": 0}
-       collection.insert_one(user_co)
+      collection.insert_one(user_co)
       user_mo = {"money": 0}
-       collection.insert_one(user_mo)
+      collection.insert_one(user_mo)
       await ctx.channel.send("Your account have been created")
    else:
       await ctx.channel.send("Your account have already been created")
