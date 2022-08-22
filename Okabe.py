@@ -30,9 +30,7 @@ async def start(ctx):
    exp = collection.find(user_id)
    for tl in exp:
         cur_tl = tl["tl"]
-   if cur_tl >= 0:
-      await ctx.channel.send("Your account have already been created")
-   else:
+   if (collection.count_documents(myquery) == 0):
       if ctx.author == bot.user:
          return
       if ctx.author.bot:
@@ -40,6 +38,8 @@ async def start(ctx):
       user_info = {"_id": author_id, "tpc": 0, "tr": 0, "ttr": 0, "te": 0, "tl": 0, "money": 0}
       collection.insert_one(user_info)
       await ctx.channel.send("Your account have been created")
+   else:
+      await ctx.channel.send("Your account have already been created")
     
 #HOW TO PLAY  
 @bot.command()
