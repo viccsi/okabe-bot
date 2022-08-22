@@ -77,7 +77,7 @@ tpc1=395
 s1=tpc1*1+tr1*15+ttr1*200+te1*1500+tl1*25000
 #theo
 tl2=0
-te2=0
+te2=1
 ttr2=8
 tr2=95
 tpc2=398
