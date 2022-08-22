@@ -1365,7 +1365,7 @@ async def dr0p(ctx):
          print(z, ": Shiina Mayuri ``aka Mayushii``")
          embed=discord.Embed(title="Shiina Mayuri ``aka Mayushii``", color=0xfff829)
          await ctx.send(embed=embed, file=discord.File('Mayuri_Shiina.jpg'))
-         elif 150<=z<=200:
+      elif 150<=z<=200:
          print(z, ": Amane Suzuha ``aka Working Warrior``")
          embed=discord.Embed(title="Amane Suzuha ``aka Working Warrior``", color=0xfff829)
          await ctx.send(embed=embed, file=discord.File('Suzuha_Amane.jpg'))
@@ -1374,9 +1374,9 @@ async def dr0p(ctx):
          await ctx.send(embed=embed)
       @dr0p.error
       async def command_dr0p_error(ctx, error):
-      if isinstance(error, commands.CommandOnCooldown):
-      em = discord.Embed(title=f"Pas de ``dr0p`` disponible!",description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
-      await ctx.send(embed=em)
+         if isinstance(error, commands.CommandOnCooldown):
+            em = discord.Embed(title=f"Pas de ``dr0p`` disponible!",description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
+            await ctx.send(embed=em)
    else:
       embed=discord.Embed(title="You aren't a member of the labo !", color=0x636363)
       await ctx.send(embed=embed)
