@@ -378,7 +378,7 @@ async def drop(ctx):
                 await ctx.send(embed=embed)
                 ope=ope+1
             if 700<=nb<=800:
-                print("-> gift!", nb)
+                print("-> sac d'or!", nb)
                 embed=discord.Embed(title="Sac d'or ! +10 💰", color=0xffffff)
                 await ctx.send(embed=embed)
                 nb_mo_1 = 10
@@ -388,7 +388,7 @@ async def drop(ctx):
                   new_money = cur_money + nb_mo_1
                 collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
             if 900<=nb<=920:
-                print("-> gift!", nb)
+                print("-> virtual card!", nb)
                 embed=discord.Embed(title="Virtual Card 💳 ! +50 💰", color=0xffffff)
                 await ctx.send(embed=embed)
                 nb_mo_1 = 50
@@ -398,7 +398,7 @@ async def drop(ctx):
                   new_money = cur_money + nb_mo_1
                 collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
             if nb==990:
-                print("-> gift!", nb)
+                print("-> diamant!", nb)
                 embed=discord.Embed(title="Diamant 💎 ! +500 💰", color=0xffffff)
                 await ctx.send(embed=embed)
                 nb_mo_1 = 500
