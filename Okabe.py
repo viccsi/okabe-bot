@@ -38,11 +38,11 @@ async def start(ctx):
 async def command_start_error(ctx, error):
    await ctx.channel.send("⚠️ Your account have already been created !")
     
-#HOW TO PLAY  
+#COMMANDS 
 @bot.command()
-async def how(ctx):
+async def commands(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
-    embed.set_author(name="HELP ⚙️")
+    embed.set_author(name="COMMANDS ⌨️")
     embed.add_field(name="!drop", value="Pour drop une réponse d'Okabe!", inline=False)
     embed.add_field(name="!reward", value="Pour voir les récompenses de drop de réponses de différentes rareté", inline=False)
     embed.add_field(name="!daily", value="Pour récupérer votre récompense quotidienne", inline=False)
@@ -50,7 +50,7 @@ async def how(ctx):
     embed.add_field(name="!invocation", value="Pour récupérer une Invocation d'Okabe", inline=False)
     embed.add_field(name="!shop", value="Pour accéder au shop", inline=False)
     embed.add_field(name="!buy_[numéro]", value="Pour acheter un article du shop", inline=False)
-    embed.add_field(name="!Collection", value="Pour voir votre collection de mesages(numéro de joueur épinglé)", inline=False)
+    embed.add_field(name="!Collection", value="Pour voir votre collection de mesages", inline=False)
     embed.add_field(name="!score", value="Pour voir votre score", inline=False)
     embed.add_field(name="!top", value="⚠️ En maintenance...", inline=False)
     await ctx.send(embed=embed)
@@ -1316,7 +1316,14 @@ async def pack(ctx):
 
 
 
-    
+#C0MMANDS 
+@bot.command()
+async def c0mmands(ctx):
+    embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
+    embed.set_author(name="C0MMANDS ⌨️")
+    embed.add_field(name="!dr0p", value="Nécessite d'être membre du labo", inline=False)
+    embed.add_field(name="!C0llecti0n", value="Pour voir votre collection des membres du labo", inline=False)
+    await ctx.send(embed=embed)    
 #DR0P
 @bot.command()
 @cooldown(1, 3600, BucketType.user)
