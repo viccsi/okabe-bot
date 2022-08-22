@@ -1046,7 +1046,7 @@ async def invocation_divine(ctx):
                 new_ttr = cur_ttr + 1
             collection.update_one({"_id": author_id}, {"$set":{"ttr":new_ttr}}, upsert=True)
             await ctx.send(embed=embed)
-        elif c_54 == ie:
+        elif c_i5 == ie:
             g = choice(épique)
             embed=discord.Embed(title=g, color=0xc955d8)
             exp = collection.find(user_id)
