@@ -1311,7 +1311,24 @@ async def pack(ctx):
         embed=discord.Embed(title="❌ There isn't any gift ❌", color=0x636363)
         await ctx.send(embed=embed)
 
-
+#TEST
+@bot.command()
+async def testing(ctx):
+   global user_id
+   global author_id
+   author_id = ctx.author.id
+   user_id = {"_id": author_id} 
+   exp = collection.find(user_id)
+   for tl in exp:
+      cur_tl = tl["tl"]
+      new_tl = cur_tl + 1
+   collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
+   if cur_tl == 1:
+      embed=discord.Embed(title=" You become a member of the labo ⚙️", color=0x636363)
+      embed.add_field(name="New badge", value="Member of the Labo ⚙️", inline=False)
+      embed.add_field(name="New commands", value="make ``c0mmands`` with a zero instead of an o", inline=False)
+      await ctx.send(embed=embed)
+      
 
 
 
