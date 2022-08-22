@@ -1344,39 +1344,39 @@ async def dr0p(ctx):
    for tl in exp:
         cur_tl = tl["tl"]
    if cur_tl >= 1:
-        z = choice(liste0)
-            if 743<=z<=747:
-                print(z, ": Hououin Kyoumaaaa ``aka Mad Scientist``")
-                embed=discord.Embed(title="Hououin Kyoumaaaa ``aka Mad Scientist``", color=0xfff829)
-                await ctx.send(embed=embed, file=discord.File('Kyouma_Hououin.png'))
-            elif 358<=z<=378:
-                print(z, ": Makise Kurisu ``aka Christina``")
-                embed=discord.Embed(title="Makise Kurisu ``aka Christina``", color=0xfff829)
-                await ctx.send(embed=embed, file=discord.File('Kurisu_Makise.jpg'))
-            elif 888<=z<=908:
-                print(z, ": Okabe Rintaro ``aka Okarin``")
-                embed=discord.Embed(title="Okabe Rintaro ``aka Okarin``", color=0xfff829)
-                await ctx.send(embed=embed, file=discord.File('Rintarou_Okabe.jpg'))
-            elif 220<=z<=270:
-                print(z, ": Hashida Daru ``aka Supah Hakah``")
-                embed=discord.Embed(title="Hashida Daru ``aka Supah Hakah``", color=0xfff829)
-                await ctx.send(embed=embed, file=discord.File('Daru_Hashida.jpg'))
-            elif 510<=z<=560:
-                print(z, ": Shiina Mayuri ``aka Mayushii``")
-                embed=discord.Embed(title="Shiina Mayuri ``aka Mayushii``", color=0xfff829)
-                await ctx.send(embed=embed, file=discord.File('Mayuri_Shiina.jpg'))
-            elif 150<=z<=200:
-                print(z, ": Amane Suzuha ``aka Working Warrior``")
-                embed=discord.Embed(title="Amane Suzuha ``aka Working Warrior``", color=0xfff829)
-                await ctx.send(embed=embed, file=discord.File('Suzuha_Amane.jpg'))
-            else:
-                embed=discord.Embed(title="Nothing here...", color=0x8b8989)
-                await ctx.send(embed=embed)
-        @dr0p.error
-        async def command_dr0p_error(ctx, error):
-            if isinstance(error, commands.CommandOnCooldown):
-                em = discord.Embed(title=f"Pas de ``dr0p`` disponible!",description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
-                await ctx.send(embed=em)
+      z = choice(liste0)
+      if 743<=z<=747:
+         print(z, ": Hououin Kyoumaaaa ``aka Mad Scientist``")
+         embed=discord.Embed(title="Hououin Kyoumaaaa ``aka Mad Scientist``", color=0xfff829)
+         await ctx.send(embed=embed, file=discord.File('Kyouma_Hououin.png'))
+      elif 358<=z<=378:
+         print(z, ": Makise Kurisu ``aka Christina``")
+         embed=discord.Embed(title="Makise Kurisu ``aka Christina``", color=0xfff829)
+         await ctx.send(embed=embed, file=discord.File('Kurisu_Makise.jpg'))
+      elif 888<=z<=908:
+         print(z, ": Okabe Rintaro ``aka Okarin``")
+         embed=discord.Embed(title="Okabe Rintaro ``aka Okarin``", color=0xfff829)
+         await ctx.send(embed=embed, file=discord.File('Rintarou_Okabe.jpg'))
+      elif 220<=z<=270:
+         print(z, ": Hashida Daru ``aka Supah Hakah``")
+         embed=discord.Embed(title="Hashida Daru ``aka Supah Hakah``", color=0xfff829)
+         await ctx.send(embed=embed, file=discord.File('Daru_Hashida.jpg'))
+      elif 510<=z<=560:
+         print(z, ": Shiina Mayuri ``aka Mayushii``")
+         embed=discord.Embed(title="Shiina Mayuri ``aka Mayushii``", color=0xfff829)
+         await ctx.send(embed=embed, file=discord.File('Mayuri_Shiina.jpg'))
+         elif 150<=z<=200:
+         print(z, ": Amane Suzuha ``aka Working Warrior``")
+         embed=discord.Embed(title="Amane Suzuha ``aka Working Warrior``", color=0xfff829)
+         await ctx.send(embed=embed, file=discord.File('Suzuha_Amane.jpg'))
+      else:
+         embed=discord.Embed(title="Nothing here...", color=0x8b8989)
+         await ctx.send(embed=embed)
+      @dr0p.error
+      async def command_dr0p_error(ctx, error):
+      if isinstance(error, commands.CommandOnCooldown):
+      em = discord.Embed(title=f"Pas de ``dr0p`` disponible!",description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
+      await ctx.send(embed=em)
    else:
       embed=discord.Embed(title="You aren't a member of the labo !", color=0x636363)
       await ctx.send(embed=embed)
