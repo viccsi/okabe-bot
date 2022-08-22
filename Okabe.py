@@ -1325,7 +1325,7 @@ async def testing(ctx):
    collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
    if cur_tl == 1:
       embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
-      embed.set_author(name="🎉 You become a member of the labo !", color=0x636363)
+      embed.set_author(name="🎉 You become a member of the labo !")
       embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
       embed.add_field(name="New commands", value="make ``c0mmands`` with a zero instead of an o", inline=False)
       await ctx.send(embed=embed)
