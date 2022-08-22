@@ -31,13 +31,9 @@ async def start(ctx):
       return
    if ctx.author.bot:
       return
-   user_id = {"_id": author_id}
-   collection.insert_one(user_id)
-   user_co = {"tpc": 0, "tr": 0, "ttr": 0, "te": 0, "tl": 0}
-   collection.insert_one(user_co)
-   user_mo = {"money": 0}
-   collection.insert_one(user_mo)
-   await ctx.channel.send("✔️ Your account have been created")
+   user_info = {"_id": author_id, "tpc": 0, "tr": 0, "ttr": 0, "te": 0, "tl": 0, "money": 0}
+   collection.insert_one(user_info)
+   await ctx.channel.send("👍 Your account have been created")
 @start.error
 async def command_start_error(ctx, error):
    await ctx.channel.send("⚠️ Your account have already been created")
