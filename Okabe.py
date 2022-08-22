@@ -136,36 +136,6 @@ async def Collection(ctx):
     embed.add_field(name="🟠 Rare", value="Total:" f"{cur_tr}" " Différents:0/7", inline=False)
     embed.add_field(name="🔵 Peu commun", value="Total:" f"{cur_tpc}" " Différents:0/12", inline=False)
     await ctx.send(embed=embed)
-@bot.command()
-async def collection2(ctx):
-    embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
-    embed.set_author(name="COLLECTION - Theo 📚")
-    embed.add_field(name="🟡 Légendaire", value="Total:" f"{tl2}" " Différents:0/2", inline=False)
-    embed.add_field(name="🟣 Epique", value="Total:" f"{te2}" " Différents:0/3", inline=False)
-    embed.add_field(name="🟢 Très Rare", value="Total:" f"{ttr2}" " Différents:4/5", inline=False)
-    embed.add_field(name="🟠 Rare", value="Total:" f"{tr2}" " Différents:[7/7]", inline=False)
-    embed.add_field(name="🔵 Peu commun", value="Total:" f"{tpc2}" " Différents:[12/12]", inline=False)
-    await ctx.send(embed=embed)
-@bot.command()
-async def collection3(ctx):
-    embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
-    embed.set_author(name="COLLECTION - Doud' 📚")
-    embed.add_field(name="🟡 Légendaire", value="Total:" f"{tl3}" " Différents:0/2", inline=False)
-    embed.add_field(name="🟣 Epique", value="Total:" f"{te3}" " Différents:0/3", inline=False)
-    embed.add_field(name="🟢 Très Rare", value="Total:" f"{ttr3}" " Différents:0/5", inline=False)
-    embed.add_field(name="🟠 Rare", value="Total:" f"{tr3}" " Différents:1/7", inline=False)
-    embed.add_field(name="🔵 Peu commun", value="Total:" f"{tpc3}" " Différents:3/12", inline=False)
-    await ctx.send(embed=embed)
-@bot.command()
-async def collection4(ctx):
-    embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
-    embed.set_author(name="COLLECTION - Loujok 📚")
-    embed.add_field(name="🟡 Légendaire", value="Total:" f"{tl4}" " Différents:0/2", inline=False)
-    embed.add_field(name="🟣 Epique", value="Total:" f"{te4}" " Différents:0/3", inline=False)
-    embed.add_field(name="🟢 Très Rare", value="Total:" f"{ttr4}" " Différents:3/5", inline=False)
-    embed.add_field(name="🟠 Rare", value="Total:" f"{tr4}" " Différents:6/7", inline=False)
-    embed.add_field(name="🔵 Peu commun", value="Total:" f"{tpc4}" " Différents:[12/12]", inline=False)
-    await ctx.send(embed=embed)
 
 #MONEY
 @bot.command()
@@ -1377,7 +1347,7 @@ async def dr0p(ctx):
          print(z, ": Hashida Daru ``aka Supah Hakah``")
          embed=discord.Embed(title="Hashida Daru ``aka Supah Hakah``", color=0xfff829)
          await ctx.send(embed=embed, file=discord.File('Daru_Hashida.jpg'))
-      elif 510<=z<=560:
+      elif 510<=z<=550:
          print(z, ": Shiina Mayuri ``aka Mayushii``")
          embed=discord.Embed(title="Shiina Mayuri ``aka Mayushii``", color=0xfff829)
          await ctx.send(embed=embed, file=discord.File('Mayuri_Shiina.jpg'))
@@ -1385,6 +1355,10 @@ async def dr0p(ctx):
          print(z, ": Amane Suzuha ``aka Working Warrior``")
          embed=discord.Embed(title="Amane Suzuha ``aka Working Warrior``", color=0xfff829)
          await ctx.send(embed=embed, file=discord.File('Suzuha_Amane.jpg'))
+      elif 25<=z<=75:
+         print(z, ": Urushibara Luka ``aka Lukako``")
+         embed=discord.Embed(title="Urushibara Luka ``aka Lukako``", color=0xfff829)
+         await ctx.send(embed=embed, file=discord.File('Urushibara_Luka.jpg'))
       else:
          embed=discord.Embed(title="Nothing here...", color=0x8b8989)
          await ctx.send(embed=embed)
@@ -1410,48 +1384,11 @@ async def command_dr0p_error(ctx, error):
 
 #C0LLECTI0N
 @bot.command()
-async def c0llecti0n1(ctx):
-    embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━", color=0x575757)
-    embed.set_author(name="C0LLECTI0N - Vic 🔬")
-    embed.add_field(name="Lab Member 001", value="???????", inline=False)
-    embed.add_field(name="Lab Member 002", value="???????", inline=False)
-    embed.add_field(name="Lab Member 003", value="???????", inline=False)
-    embed.add_field(name="Lab Member 004", value="???????", inline=False)
-    embed.add_field(name="Lab Member 005", value="???????", inline=False)
-    embed.add_field(name="Lab Member 006", value="???????", inline=False)
-    embed.add_field(name="Lab Member 007", value="???????", inline=False)
-    embed.add_field(name="Lab Member 008", value="???????", inline=False)
-    await ctx.send(embed=embed)
-@bot.command()
-async def c0llecti0n2(ctx):
-    embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━", color=0x575757)
-    embed.set_author(name="C0LLECTI0N - Theo 🔬")
-    embed.add_field(name="Lab Member 001", value="???????", inline=False)
-    embed.add_field(name="Lab Member 002", value="???????", inline=False)
-    embed.add_field(name="Lab Member 003", value="???????", inline=False)
-    embed.add_field(name="Lab Member 004", value="???????", inline=False)
-    embed.add_field(name="Lab Member 005", value="???????", inline=False)
-    embed.add_field(name="Lab Member 006", value="???????", inline=False)
-    embed.add_field(name="Lab Member 007", value="???????", inline=False)
-    embed.add_field(name="Lab Member 008", value="???????", inline=False)
-    await ctx.send(embed=embed)
-@bot.command()
-async def c0llecti0n3(ctx):
-    embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━", color=0x575757)
-    embed.set_author(name="C0LLECTI0N - Doud' 🔬")
-    embed.add_field(name="Lab Member 001", value="???????", inline=False)
-    embed.add_field(name="Lab Member 002", value="???????", inline=False)
-    embed.add_field(name="Lab Member 003", value="???????", inline=False)
-    embed.add_field(name="Lab Member 004", value="???????", inline=False)
-    embed.add_field(name="Lab Member 005", value="???????", inline=False)
-    embed.add_field(name="Lab Member 006", value="???????", inline=False)
-    embed.add_field(name="Lab Member 007", value="???????", inline=False)
-    embed.add_field(name="Lab Member 008", value="???????", inline=False)
-    await ctx.send(embed=embed)
-@bot.command()
-async def c0llecti0n4(ctx):
-    embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x575757)
-    embed.set_author(name="C0LLECTI0N - Loujok 🔬")
+async def C0llecti0n(ctx):
+    global user_id
+    global author_id
+    embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
+    embed.set_author(name="C0LLECTI0N " f"{name}" " 🔬")
     embed.add_field(name="Lab Member 001", value="???????", inline=False)
     embed.add_field(name="Lab Member 002", value="???????", inline=False)
     embed.add_field(name="Lab Member 003", value="???????", inline=False)
