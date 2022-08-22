@@ -38,9 +38,9 @@ async def start(ctx):
 async def command_start_error(ctx, error):
    await ctx.channel.send("⚠️ Your account have already been created !")
     
-#COMMANDS 
+#how 
 @bot.command()
-async def Commands(ctx):
+async def how(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
     embed.set_author(name="COMMANDS ⌨️")
     embed.add_field(name="!drop", value="Pour drop une réponse d'Okabe!", inline=False)
@@ -1327,16 +1327,16 @@ async def testing(ctx):
       embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━", color=0x636363)
       embed.set_author(name="🎉 You become a member of the labo !")
       embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
-      embed.add_field(name="New commands", value="make ``!C0mmands`` with a zero instead of an o", inline=False)
+      embed.add_field(name="New commands", value="make ``!h0w`` with a zero instead of an o", inline=False)
       await ctx.send(embed=embed)
       
 
 
 
 
-#C0MMANDS 
+#H0W 
 @bot.command()
-async def C0mmands(ctx):
+async def h0w(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
     embed.set_author(name="C0MMANDS ⌨️")
     embed.add_field(name="!dr0p", value="Nécessite d'être membre du labo", inline=False)
