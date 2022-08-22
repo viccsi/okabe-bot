@@ -1398,13 +1398,14 @@ async def command_dr0p_error(ctx, error):
    if isinstance(error, commands.CommandOnCooldown):
       global user_id
       global author_id
+      global cur_tl
       author_id = ctx.author.id
       user_id = {"_id": author_id} 
       exp = collection.find(user_id)
       for tl in exp:
         cur_tl = tl["tl"]
       if cur_tl >= 1:
-         em = discord.Embed(title=f"Pas de ``dr0p`` disponible!",description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
+         em = discord.Embed(title=f"Pas de ``dr0p`` disponible!", description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
          await ctx.send(embed=em)
       else:
          embed=discord.Embed(title="❌ You aren't a member of the labo ! ❌", color=0x636363)
