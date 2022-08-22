@@ -1385,14 +1385,14 @@ async def dr0p(ctx):
       else:
          embed=discord.Embed(title="Nothing here...", color=0x8b8989)
          await ctx.send(embed=embed)
-      @dr0p.error
+   else:
+      embed=discord.Embed(title="You aren't a member of the labo !", color=0x636363)
+      await ctx.send(embed=embed)
+@dr0p.error
       async def command_dr0p_error(ctx, error):
          if isinstance(error, commands.CommandOnCooldown):
             em = discord.Embed(title=f"Pas de ``dr0p`` disponible!",description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
             await ctx.send(embed=em)
-   else:
-      embed=discord.Embed(title="You aren't a member of the labo !", color=0x636363)
-      await ctx.send(embed=embed)
 
 #C0LLECTI0N
 @bot.command()
