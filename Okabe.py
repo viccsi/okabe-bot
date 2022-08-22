@@ -850,6 +850,13 @@ async def invocation_divine(ctx):
                 cur_tl = tl["tl"]
                 new_tl = cur_tl + 1
             collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
+            await ctx.send(embed=embed)
+            if new_tl == 1:
+               embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━", color=0x636363)
+               embed.set_author(name="🎉 You become a member of the labo !")
+               embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
+               embed.add_field(name="New commands", value="make ``!h0w`` with a zero instead of an o", inline=False)
+               await ctx.send(embed=embed)
         if c_i2 == ipc:
             d = choice(peucommun)
             embed=discord.Embed(title=d, color=0x5aa7ce)
@@ -895,6 +902,12 @@ async def invocation_divine(ctx):
                 new_tl = cur_tl + 1
             collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
             await ctx.send(embed=embed) 
+            if new_tl == 1:
+               embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━", color=0x636363)
+               embed.set_author(name="🎉 You become a member of the labo !")
+               embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
+               embed.add_field(name="New commands", value="make ``!h0w`` with a zero instead of an o", inline=False)
+               await ctx.send(embed=embed)
         if c_i3 == ipc:
             d = choice(peucommun)
             embed=discord.Embed(title=d, color=0x5aa7ce)
@@ -940,6 +953,12 @@ async def invocation_divine(ctx):
                 new_tl = cur_tl + 1
             collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
             await ctx.send(embed=embed) 
+            if new_tl == 1:
+            embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━", color=0x636363)
+            embed.set_author(name="🎉 You become a member of the labo !")
+            embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
+            embed.add_field(name="New commands", value="make ``!h0w`` with a zero instead of an o", inline=False)
+            await ctx.send(embed=embed)
         if c_i4 == ipc:
             d = choice(peucommun)
             embed=discord.Embed(title=d, color=0x5aa7ce)
@@ -985,6 +1004,12 @@ async def invocation_divine(ctx):
                 new_tl = cur_tl + 1
             collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
             await ctx.send(embed=embed) 
+            if new_tl == 1:
+               embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━", color=0x636363)
+               embed.set_author(name="🎉 You become a member of the labo !")
+               embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
+               embed.add_field(name="New commands", value="make ``!h0w`` with a zero instead of an o", inline=False)
+               await ctx.send(embed=embed)
         if c_i5 == ipc:
             d = choice(peucommun)
             embed=discord.Embed(title=d, color=0x5aa7ce)
@@ -1029,7 +1054,13 @@ async def invocation_divine(ctx):
                 cur_tl = tl["tl"]
                 new_tl = cur_tl + 1
             collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
-            await ctx.send(embed=embed) 
+            await ctx.send(embed=embed)
+            if new_tl == 1:
+               embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━", color=0x636363)
+               embed.set_author(name="🎉 You become a member of the labo !")
+               embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
+               embed.add_field(name="New commands", value="make ``!h0w`` with a zero instead of an o", inline=False)
+               await ctx.send(embed=embed)
     else:
         embed=discord.Embed(title="❌ You haven't any invocation ❌", color=0x636363)
         await ctx.send(embed=embed) 
