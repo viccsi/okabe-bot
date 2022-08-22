@@ -112,7 +112,6 @@ async def Collection(ctx):
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     name = await bot.fetch_user(author_id)
-    print(name)
     exp = collection.find(user_id)
     for tl in exp:
         cur_tl = tl["tl"]
@@ -1387,6 +1386,7 @@ async def command_dr0p_error(ctx, error):
 async def C0llecti0n(ctx):
     global user_id
     global author_id
+    name = await bot.fetch_user(author_id)
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
     embed.set_author(name="C0LLECTI0N " f"{name}" " 🔬")
     embed.add_field(name="Lab Member 001", value="???????", inline=False)
