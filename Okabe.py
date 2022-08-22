@@ -74,28 +74,28 @@ te1=0
 ttr1=22
 tr1=78
 tpc1=395
-s1=tpc1*1+tr1*10+ttr1*100+te1*1000+tl1*25000
+s1=tpc1*1+tr1*15+ttr1*200+te1*1500+tl1*25000
 #theo
 tl2=0
 te2=0
 ttr2=8
 tr2=95
 tpc2=398
-s2=tpc2*1+tr2*10+ttr2*100+te2*1000+tl2*25000
+s2=tpc2*1+tr2*15+ttr2*200+te2*1500+tl2*25000
 #doud
 tl3=0
 te3=0
 ttr3=0
 tr3=4
 tpc3=12
-s3=tpc3*1+tr3*10+ttr3*100+te3*1000+tl3*25000
+s3=tpc3*1+tr3*15+ttr3*200+te3*1500+tl3*25000
 #loujok
 tl4=1
 te4=1
 ttr4=11
 tr4=66
 tpc4=291
-s4=tpc4*1+tr4*10+ttr4*100+te4*1000+tl4*25000
+s4=tpc4*1+tr4*15+ttr4*200+te4*1500+tl4*25000
 
 
 #COLLECTION
@@ -229,7 +229,7 @@ async def score(ctx):
     exp = collection.find(user_id)
     for tpc in exp:
         cur_tpc = tpc["tpc"]
-    s=cur_tpc*1+cur_tr*10+cur_ttr*100+cur_te*1000+cur_tl*25000
+    s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
     embed=discord.Embed(title=" ━━━━━", color=0x636363)
     embed.set_author(name="SCORE 🏆")
     embed.add_field(name="You have:", value=f"{s}" " pts", inline=False)
