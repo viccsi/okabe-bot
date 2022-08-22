@@ -1351,8 +1351,8 @@ async def dr0p(ctx):
          embed=discord.Embed(title="Shiina Mayuri ``aka Mayushii``", color=0xfff829)
          await ctx.send(embed=embed, file=discord.File('Mayuri_Shiina.jpg'))
       elif 150<=z<=200:
-         print(z, ": Amane Suzuha ``aka Working Warrior``")
-         embed=discord.Embed(title="Amane Suzuha ``aka Working Warrior``", color=0xfff829)
+         print(z, ": Amane Suzuha ``aka Part-Time Warrior``")
+         embed=discord.Embed(title="Amane Suzuha ``aka Part-Time Warrior``", color=0xfff829)
          await ctx.send(embed=embed, file=discord.File('Suzuha_Amane.jpg'))
       elif 25<=z<=75:
          print(z, ": Urushibara Luka ``aka Lukako``")
