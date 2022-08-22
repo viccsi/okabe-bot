@@ -30,7 +30,7 @@ async def start(ctx):
    exp = collection.find(user_id)
    for tl in exp:
         cur_tl = tl["tl"]
-   if (collection.count_documents() == 0):
+   if (collection.count_documents({}) == 0):
       if ctx.author == bot.user:
          return
       if ctx.author.bot:
