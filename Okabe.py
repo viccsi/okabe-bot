@@ -1365,8 +1365,12 @@ async def dr0p(ctx):
          print(z, ": Urushibara Luka ``aka Lukako``")
          embed=discord.Embed(title="Urushibara Luka ``aka Lukako``", color=0xfff829)
          await ctx.send(embed=embed, file=discord.File('Urushibara_Luka.jpg'))
+      elif 855<=z<=905:
+         print(z, ": Akiha Rumiho ``aka Faris NyanNyan``")
+         embed=discord.Embed(title="Akiha Rumiho ``aka Faris NyanNyan``", color=0xfff829)
+         await ctx.send(embed=embed, file=discord.File('Faris_NyanNyan.jpg'))
       else:
-         embed=discord.Embed(title="Nothing here...", color=0x8b8989)
+         embed=discord.Embed(title="Nothing here... Come back later...", color=0x8b8989)
          await ctx.send(embed=embed)
    else:
       embed=discord.Embed(title="❌ You aren't a member of the labo ! ❌", color=0x636363)
