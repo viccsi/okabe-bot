@@ -73,14 +73,14 @@ tl1=0
 te1=0
 ttr1=22
 tr1=78
-tpc1=391
+tpc1=395
 s1=tpc1*1+tr1*10+ttr1*100+te1*1000+tl1*25000
 #theo
 tl2=0
 te2=0
-ttr2=7
+ttr2=8
 tr2=95
-tpc2=397
+tpc2=398
 s2=tpc2*1+tr2*10+ttr2*100+te2*1000+tl2*25000
 #doud
 tl3=0
@@ -90,11 +90,11 @@ tr3=4
 tpc3=12
 s3=tpc3*1+tr3*10+ttr3*100+te3*1000+tl3*25000
 #loujok
-tl4=0
-te4=0
-ttr4=8
-tr4=59
-tpc4=249
+tl4=1
+te4=1
+ttr4=11
+tr4=66
+tpc4=291
 s4=tpc4*1+tr4*10+ttr4*100+te4*1000+tl4*25000
 
 
@@ -844,7 +844,7 @@ async def invocation_divine(ctx):
             await ctx.send(embed=embed) 
         elif c_i1 == il:
             h = choice(légendaire)
-            embed=discord.Embed(title=h, color=0xc955d8)
+            embed=discord.Embed(title=h, color=0xfff829)
             exp = collection.find(user_id)
             for tl in exp:
                 cur_tl = tl["tl"]
@@ -895,7 +895,7 @@ async def invocation_divine(ctx):
             await ctx.send(embed=embed)
         elif c_i2 == il:
             h = choice(légendaire)
-            embed=discord.Embed(title=h, color=0xc955d8)
+            embed=discord.Embed(title=h, color=0xfff829)
             exp = collection.find(user_id)
             for tl in exp:
                 cur_tl = tl["tl"]
@@ -946,7 +946,7 @@ async def invocation_divine(ctx):
             await ctx.send(embed=embed)
         elif c_i3 == il:
             h = choice(légendaire)
-            embed=discord.Embed(title=h, color=0xc955d8)
+            embed=discord.Embed(title=h, color=0xfff829)
             exp = collection.find(user_id)
             for tl in exp:
                 cur_tl = tl["tl"]
@@ -997,7 +997,7 @@ async def invocation_divine(ctx):
             await ctx.send(embed=embed) 
         elif c_i4 == il:
             h = choice(légendaire)
-            embed=discord.Embed(title=h, color=0xc955d8)
+            embed=discord.Embed(title=h, color=0xfff829)
             exp = collection.find(user_id)
             for tl in exp:
                 cur_tl = tl["tl"]
@@ -1048,7 +1048,7 @@ async def invocation_divine(ctx):
             await ctx.send(embed=embed) 
         elif c_i5 == il:
             h = choice(légendaire)
-            embed=discord.Embed(title=h, color=0xc955d8)
+            embed=discord.Embed(title=h, color=0xfff829)
             exp = collection.find(user_id)
             for tl in exp:
                 cur_tl = tl["tl"]
