@@ -1110,7 +1110,7 @@ async def daily(ctx):
             new_tpc = cur_tpc + 1
         collection.update_one({"_id": author_id}, {"$set":{"tpc":new_tpc}}, upsert=True)
         await ctx.send(embed=embed)
-    elif 600<nb_da<=750:
+    elif 6000<nb_da<=7500:
         e = choice(rare)
         embed=discord.Embed(title=e, color=0xf4911f)
         exp = collection.find(user_id)
