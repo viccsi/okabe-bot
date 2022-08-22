@@ -1215,6 +1215,9 @@ async def command_daily_error(ctx, error):
 async def pack(ctx):
     global ope
     global opi
+    global user_id
+    global author_id
+    global new_money
     a = choice(debut)
     b = choice(liste)
     c = choice(commun)
@@ -1227,16 +1230,26 @@ async def pack(ctx):
         await ctx.send("All I want to say is...")
         nb = choice(rec)
         ope=ope-1
-        if 0<=nb<=1000:
+        if 0<=nb<=750:
             print("-> giftx3!")
             embed=discord.Embed(title="🎁 Gift x3 (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
             ope=ope+3
-        if 1000<nb<=2500:
+        elif 750<nb<=1750:
             print("-> giftx2!")
             embed=discord.Embed(title="🎁 Gift x2 ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
             ope=ope+2
+        elif 1750<nb<=2500:
+            print("-> gift!", nb)
+            embed=discord.Embed(title="Sac d'or ! +10 💰", color=0xffffff)
+            await ctx.send(embed=embed)
+            nb_mo_1 = 10
+            exp = collection.find(user_id)
+            for money in exp:
+               cur_money = money["money"]
+               new_money = cur_money + nb_mo_1
+            collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         elif 2500<nb<8400:
             print("gift : peu commun")
             embed=discord.Embed(title=d, color=0x5aa7ce)
