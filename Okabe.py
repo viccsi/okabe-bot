@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from os import getenv
 from random import *
 from discord.ext import commands
+import datetime
 from discord.ext.commands import cooldown, BucketType
 
 bot = commands.Bot(command_prefix = "!", description = "Bot by Vic")
@@ -1218,7 +1219,8 @@ async def daily(ctx):
 @daily.error
 async def command_daily_error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
-        embed = discord.Embed(title=f"Pas de ``daily`` disponible!",description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
+        remaining_time = str(datetime.timedelta(seconds=int(error.retry_after)))
+        embed = discord.Embed(title=f"Pas de ``daily`` disponible!",description=f"Try again in" + str(remaining_time), color=0x575757)
         await ctx.send(embed=embed)
    
 #GIFT
@@ -1444,8 +1446,9 @@ async def command_dr0p_error(ctx, error):
       for tl in exp:
         cur_tl = tl["tl"]
       if cur_tl >= 1:
-         em = discord.Embed(title=f"Pas de ``dr0p`` disponible!", description=f"Try again in {error.retry_after:.2f}s.", color=0x575757)
-         await ctx.send(embed=em)
+         remaining_time = str(datetime.timedelta(seconds=int(error.retry_after)))
+         embed = discord.Embed(title=f"Pas de ``dr0p`` disponible!",description=f"Try again in " + str(remaining_time), color=0x575757)
+         await ctx.send(embed=embed)
       else:
          embed=discord.Embed(title="❌ You aren't a member of the labo ! ❌", color=0x636363)
          await ctx.send(embed=embed) 
