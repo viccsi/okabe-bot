@@ -1099,6 +1099,7 @@ async def daily(ctx):
     nb_mo_3 = choice(ti_da_3) + 500
     nb_mo_4 = choice(ti_da_4) + 1500
     nb_da = choice(rec) 
+    await ctx.channel.send("📅 DAILY REWARD")
     if 0<=nb_da<=3000:
         exp = collection.find(user_id)
         for money in exp:
@@ -1195,6 +1196,7 @@ async def daily(ctx):
             c_i3 = ir
         elif 5000<ch_i3<=5450 or 9850<=ch_i3<=10000:
             c_i3 = itr
+        embed=discord.Embed(title=f"{c_i1}" f"{c_i2}" f"{c_i3}" "-> !invocation", color=0xffffff)
     elif 9950<nb_da<=9980:
         exp = collection.find(user_id)
         for money in exp:
