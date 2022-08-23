@@ -1242,7 +1242,7 @@ async def pack(ctx):
         await ctx.send("All I want to say is...")
         nb = choice(rec)
         ope=ope-1
-        if 0<=nb<=750:
+        if 0<=nb<=400:
             print("-> giftx3!")
             embed=discord.Embed(title="🎁 Gift x3 (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
@@ -1252,7 +1252,7 @@ async def pack(ctx):
             embed=discord.Embed(title="🎁 Gift x2 ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
             ope=ope+2
-        elif 1750<nb<=2500:
+        elif 500<nb<=750 or 1750<nb<=2500:
             print("-> gift!", nb)
             embed=discord.Embed(title="Sac d'or ! +10 💰", color=0xffffff)
             await ctx.send(embed=embed)
@@ -1271,7 +1271,7 @@ async def pack(ctx):
                 new_tpc = cur_tpc + 1
             collection.update_one({"_id": author_id}, {"$set":{"tpc":new_tpc}}, upsert=True)
             await ctx.send(embed=embed)
-        elif 8400<=nb<=9835:
+        elif 400<nb<=500 or 8400<=nb<=9825:
             print("gift : rare")
             embed=discord.Embed(title=e, color=0xf4911f)
             exp = collection.find(user_id)
@@ -1280,7 +1280,7 @@ async def pack(ctx):
                 new_tr = cur_tr + 1
             collection.update_one({"_id": author_id}, {"$set":{"tr":new_tr}}, upsert=True)
             await ctx.send(embed=embed)
-        elif 9835<nb<=9993:
+        elif 9825<nb<=9993:
             print("gift : très rare")
             embed=discord.Embed(title=f, color=0x35d070)
             exp = collection.find(user_id)
