@@ -586,55 +586,55 @@ async def buy_5(ctx):
         il = "✨"
         inv = (range(10000))
         ch_i1 = choice(inv)
-        if 0<=ch_i1<=2000:
+        if 0<=ch_i1<=2000 or 8500<ch_i1<9000:
             c_i1 = ipc
         elif 2000<ch_i1<=5500:
             c_i1 = ir
-        elif 5500<ch_i1<8000 or 8500<=ch_i1<10000:
+        elif 5500<ch_i1<8000 or 9000<=ch_i1<10000:
             c_i1 = itr
         elif 8030<ch_i1<=8500:
             c_i1 = ie
         elif 8000<=ch_i1<=8030:
             c_i1 = il   
         ch_i2 = choice(inv)
-        if 0<=ch_i2<=2000:
+        if 0<=ch_i2<=2000 or 8500<ch_i2<9000:
             c_i2 = ipc
         elif 2000<ch_i2<=5500:
             c_i2 = ir
-        elif 5500<ch_i2<8000 or 8500<=ch_i2<10000:
+        elif 5500<ch_i2<8000 or 9000<=ch_i2<10000:
             c_i2 = itr
         elif 8030<ch_i2<=8500:
             c_i2 = ie
         elif 8000<=ch_i2<=8030:
             c_i2 = il   
         ch_i3 = choice(inv)
-        if 0<=ch_i3<=2000:
+        if 0<=ch_i3<=2000 or 8500<ch_i3<9000:
             c_i3 = ipc
         elif 2000<ch_i3<=5500:
             c_i3 = ir
-        elif 5500<ch_i3<8000 or 8500<=ch_i3<10000:
+        elif 5500<ch_i3<8000 or 9000<=ch_i3<10000:
             c_i3 = itr
         elif 8030<ch_i3<=8500:
             c_i3 = ie
         elif 8000<=ch_i3<=8030:
             c_i3 = il 
         ch_i4 = choice(inv)
-        if 0<=ch_i4<=2000:
+        if 0<=ch_i4<=2000 or 8500<ch_i4<9000:
             c_i4 = ipc
         elif 2000<ch_i4<=5500:
             c_i4 = ir
-        elif 5500<ch_i4<8000 or 8500<=ch_i4<10000:
+        elif 5500<ch_i4<8000 or 9000<=ch_i4<10000:
             c_i4 = itr
         elif 8030<ch_i4<=8500:
             c_i4 = ie
         elif 8000<=ch_i4<=8030:
             c_i4 = il 
         ch_i5 = choice(inv)
-        if 0<=ch_i5<=2000:
+        if 0<=ch_i5<=2000 or 8500<ch_i5<9000:
             c_i5 = ipc
         elif 2000<ch_i5<=5500:
             c_i5 = ir
-        elif 5500<ch_i5<8000 or 8500<=ch_i5<10000:
+        elif 5500<ch_i5<8000 or 9000<=ch_i5<10000:
             c_i5 = itr
         elif 8030<ch_i5<=8500:
             c_i5 = ie
