@@ -300,12 +300,18 @@ async def drop(ctx):
             new_tl = cur_tl + 1
         collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
         await ctx.send(embed=embed)
+        if new_tl == 1:
+            embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━", color=0x636363)
+            embed.set_author(name="🎉 You become a member of the labo !")
+            embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
+            embed.add_field(name="New commands", value="make ``!h0w`` with a zero instead of an o", inline=False)
+        await ctx.send(embed=embed)
         if nb==500:
-            print("-> giftx3!")
-            embed=discord.Embed(title="🎁 Gift x3 ! (fais vite la commande `!pack`)", color=0xffffff)
+            print("-> giftx5!")
+            embed=discord.Embed(title="🎁 Gift x5 ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
-            ope=ope+3
-    elif 20<=b<=40:
+            ope=ope+5
+    elif 20<=b<=50:
         print(b, ": épique")
         embed=discord.Embed(title=g, color=0xc955d8)
         exp = collection.find(user_id)
@@ -316,10 +322,10 @@ async def drop(ctx):
         await ctx.send(embed=embed)
         if nb==500:
             print("-> gift!")
-            embed=discord.Embed(title="🎁 Gift ! (fais vite la commande `!pack`)", color=0xffffff)
+            embed=discord.Embed(title="🎁 Gift x3 ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
-            ope=ope+1
-    elif 1400<=b<=1700:
+            ope=ope+3
+    elif 1300<=b<=1700:
         print(b, ": très rare")
         embed=discord.Embed(title=f, color=0x35d070)
         exp = collection.find(user_id)
@@ -333,7 +339,7 @@ async def drop(ctx):
             embed=discord.Embed(title="🎁 Gift ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
             ope=ope+1
-    elif 45033<=b<=46533:
+    elif 45033<=b<=47033:
         print(b, ": rare")
         embed=discord.Embed(title=e, color=0xf4911f)
         exp = collection.find(user_id)
