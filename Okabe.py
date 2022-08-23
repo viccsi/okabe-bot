@@ -45,7 +45,6 @@ async def how(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
     embed.set_author(name="COMMANDS ⌨️")
     embed.add_field(name="!drop", value="Pour drop une réponse d'Okabe!", inline=False)
-    embed.add_field(name="!reward", value="Pour voir les récompenses de drop de réponses de différentes rareté", inline=False)
     embed.add_field(name="!daily", value="Pour récupérer votre récompense quotidienne", inline=False)
     embed.add_field(name="!pack", value="Pour récupérer un Gift d'Okabe", inline=False)
     embed.add_field(name="!invocation", value="Pour récupérer une Invocation d'Okabe", inline=False)
@@ -1127,7 +1126,7 @@ async def daily(ctx):
             new_tr = cur_tr + 1
         collection.update_one({"_id": author_id}, {"$set":{"tr":new_tr}}, upsert=True)
         await ctx.send(embed=embed)
-    elif 7500<nb_da<=8500:
+    elif 7500<nb_da<=8000:
         exp = collection.find(user_id)
         for money in exp:
             cur_money = money["money"]
@@ -1135,7 +1134,7 @@ async def daily(ctx):
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         embed=discord.Embed(title="+" f"{nb_mo_2}" " 💰", color=0xffffff)
         await ctx.send(embed=embed)
-    elif 8500<nb_da<=9500:
+    elif 8000<nb_da<=9500:
         embed=discord.Embed(title="🎁 Gift x3 (fais vite la commande `!pack`)", color=0xffffff)
         await ctx.send(embed=embed)
         ope=ope+3
@@ -1220,7 +1219,7 @@ async def daily(ctx):
 async def command_daily_error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
         remaining_time = str(datetime.timedelta(seconds=int(error.retry_after)))
-        embed = discord.Embed(title=f"Pas de ``daily`` disponible!",description=f"Try again in" + str(remaining_time), color=0x575757)
+        embed = discord.Embed(title=f"Pas de ``daily`` disponible!",description=f"Try again in " + str(remaining_time), color=0x575757)
         await ctx.send(embed=embed)
    
 #GIFT
