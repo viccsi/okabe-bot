@@ -32,7 +32,7 @@ async def start(ctx):
       return
    if ctx.author.bot:
       return
-   user_info = {"_id": author_id, "tpc": 0, "tr": 0, "ttr": 0, "te": 0, "tl": 0, "money": 0}
+   user_info = {"_id": author_id, "tpc": 0, "tr": 0, "ttr": 0, "te": 0, "tl": 0, "badge": 0, "money": 0}
    collection.insert_one(user_info)
    await ctx.channel.send("👍 Your account have been created !")
 @start.error
@@ -1067,6 +1067,11 @@ async def invocation_divine(ctx):
                embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
                embed.add_field(name="New commands", value="make ``!h0w`` with a zero instead of an o", inline=False)
                await ctx.send(embed=embed)
+               exp = collection.find(user_id)
+               for badge in exp:
+                  cur_badge = badge["badge"]
+                  new_badge = cur_badge + 1
+               collection.update_one({"_id": author_id}, {"$set":{"badge":new_badge}}, upsert=True)
     else:
         embed=discord.Embed(title="❌ You haven't any invocation ❌", color=0x636363)
         await ctx.send(embed=embed) 
@@ -1369,6 +1374,11 @@ async def testing(ctx):
       embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
       embed.add_field(name="New commands", value="make ``!h0w`` with a zero instead of an o", inline=False)
       await ctx.send(embed=embed)
+      exp = collection.find(user_id)
+      for badge in exp:
+         cur_badge = badge["badge"]
+         new_badge = cur_badge + 1
+      collection.update_one({"_id": author_id}, {"$set":{"badge":new_badge}}, upsert=True)
       
 
 
