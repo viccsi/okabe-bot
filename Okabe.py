@@ -373,7 +373,81 @@ async def score(ctx):
     embed.set_author(name="SCORE 🏆")
     embed.add_field(name="You have:", value=f"{s}" " pts", inline=False)
     await ctx.send(embed=embed)
-        
+
+#BADGES
+@bot.command()
+async def badges(ctx):
+    global user_id
+    global author_id
+    global exp
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    exp = collection.find(user_id)
+    name = await bot.fetch_user(author_id)
+    badge = None
+    exp = collection.find(user_id)
+    for b1 in exp:
+        cur_b1 = b1["b1"]
+    if cur_b1 == 1:
+        if badge == None:
+            badge = str()
+        badge=badge+"⚙ ️"
+    exp = collection.find(user_id)
+    for b2 in exp:
+        cur_b2 = b2["b2"]
+    if cur_b2 >= 1:
+        if badge == None:
+            badge = str()
+        badge=badge+"⭐ "
+    if cur_b2 >= 2:
+        if badge == None:
+            badge = str()
+        badge=badge+"🌟 "
+    if cur_b2 >= 3:
+        if badge == None:
+            badge = str() 
+        badge=badge+"✨"
+    embed=discord.Embed(title=" ━━━━━", color=0x636363)
+    embed.set_author(name="BADGES 🎗️")
+    embed.add_field(name="You have:", value=f"{badge}", inline=False)
+    message=await ctx.send(embed=embed)
+    exp = collection.find(user_id)
+    for b1 in exp:
+        cur_b1 = b1["b1"]
+    if cur_b1 == 1:
+        await message.add_reaction("⚙")
+    exp = collection.find(user_id)
+    for b2 in exp:
+        cur_b2 = b2["b2"]
+    if cur_b2 >= 1:
+        await message.add_reaction("⭐")
+    if cur_b2 >= 2:
+        await message.add_reaction("🌟")
+    if cur_b2 >= 3:
+        await message.add_reaction("✨")
+    def checkEmoji(reaction, user):
+        return ctx.message.author == user and message.id==reaction.message.id and(str(reaction.emoji) == "⚙" or str(reaction.emoji) == "⭐" or str(reaction.emoji) == "🌟" or str(reaction.emoji) == "✨")  
+    reaction, user = await bot.wait_for("reaction_add", check=checkEmoji)
+    if reaction.emoji == "⚙":
+        embed=discord.Embed(color=0xd1d1d1)
+        embed.add_field(name="⚙ Lab Member", value="Vous avez débloqué un légendaire", inline=False)
+        await ctx.send(embed=embed)
+        reaction, user = await bot.wait_for("reaction_add", check=checkEmoji)
+    if reaction.emoji == "⭐":
+        embed=discord.Embed(color=0xd1d1d1)
+        embed.add_field(name="⭐ 1,000 pts", value="Vous avez obtenu 1,000pts", inline=False)
+        await ctx.send(embed=embed)
+        reaction, user = await bot.wait_for("reaction_add", check=checkEmoji)
+    if reaction.emoji == "🌟":
+        embed=discord.Embed(color=0xd1d1d1)
+        embed.add_field(name="🌟  10,000 pts", value="Vous avez obtenu 10,000pts", inline=False)
+        await ctx.send(embed=embed)
+        reaction, user = await bot.wait_for("reaction_add", check=checkEmoji)
+    if reaction.emoji == "✨":
+        embed=discord.Embed(color=0xd1d1d1)
+        embed.add_field(name="✨ 100,000 pts", value="Vous avez obtenu 100,000pts", inline=False)
+        await ctx.send(embed=embed)
+        reaction, user = await bot.wait_for("reaction_add", check=checkEmoji)
       
 #PROBA
 liste = (range(1000000))
