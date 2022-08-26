@@ -331,7 +331,7 @@ async def card(ctx):
     exp = collection.find(user_id)
     for money in exp:
         cur_money = money["money"]
-    s=cur_tpc*1+cur_tr*10+cur_ttr*100+cur_te*1000+cur_tl*25000
+    s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
     embed=discord.Embed(title=" ━━━━━━━━━", color=0x636363)
     embed.set_author(name="CARD " f"{name}" " 💾")
     embed.add_field(name="Score", value=f"{s}" " pts", inline=False)
