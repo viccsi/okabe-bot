@@ -32,7 +32,7 @@ async def start(ctx):
       return
    if ctx.author.bot:
       return
-   user_info = {"_id": author_id, "tpc": 0, "tr": 0, "ttr": 0, "te": 0, "tl": 0, "b1": 0, "b2":0, "money": 0}
+   user_info = {"_id": author_id, "tpc": 0, "tr": 0, "ttr": 0, "te": 0, "tl": 0, "b1": 0, "b2":0, "b3":0, "money": 0, "boo":1, "timeb":0}
    collection.insert_one(user_info)
    await ctx.channel.send("👍 Your account have been created !")
 @start.error
@@ -44,96 +44,20 @@ async def command_start_error(ctx, error):
 async def how(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
     embed.set_author(name="COMMANDS ⌨️")
+    embed.add_field(name="!start", value="Pour commencer l'aventure...", inline=False)
     embed.add_field(name="!drop", value="Pour drop une réponse d'Okabe!", inline=False)
     embed.add_field(name="!daily", value="Pour récupérer votre récompense quotidienne", inline=False)
-    embed.add_field(name="!pack", value="Pour récupérer un Gift d'Okabe", inline=False)
-    embed.add_field(name="!invocation", value="Pour récupérer une Invocation d'Okabe", inline=False)
+    embed.add_field(name="!Collection", value="Pour voir votre collection de mesages", inline=False)
+    embed.add_field(name="!card", value="Pour voir votre profil de joueur", inline=False)
+    embed.add_field(name="!score", value="Pour voir votre score", inline=False)
+    embed.add_field(name="!badges", value="Pour connaître ce que réprésentent vos badges", inline=False)
     embed.add_field(name="!shop", value="Pour accéder au shop", inline=False)
     embed.add_field(name="!buy_[numéro]", value="Pour acheter un article du shop", inline=False)
-    embed.add_field(name="!Collection", value="Pour voir votre collection de mesages", inline=False)
-    embed.add_field(name="!score", value="Pour voir votre score", inline=False)
+    embed.add_field(name="!pack", value="Pour récupérer un Gift d'Okabe", inline=False)
+    embed.add_field(name="!invocation", value="Pour récupérer une Invocation d'Okabe", inline=False)
     embed.add_field(name="!top", value="⚠️ En maintenance...", inline=False)
     await ctx.send(embed=embed)
-
-#TEST
-@bot.command()
-async def testing(ctx):
-   global user_id
-   global author_id
-   author_id = ctx.author.id
-   user_id = {"_id": author_id} 
-   exp = collection.find(user_id)
-   for tl in exp:
-      cur_tl = tl["tl"]
-      new_tl = cur_tl + 1
-   collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
-   if new_tl == 1:
-      embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━", color=0x636363)
-      embed.set_author(name="🎉 You become a member of the labo !")
-      embed.add_field(name="New badge", value="⚙️ Member of the Labo", inline=False)
-      embed.add_field(name="New commands", value="make ``!h0w`` with a zero instead of an o", inline=False)
-      await ctx.send(embed=embed)
-      exp = collection.find(user_id)
-      for b1 in exp:
-         cur_b1 = b1["b1"]
-         new_b1 = cur_b1 + 1
-      collection.update_one({"_id": author_id}, {"$set":{"b1":new_b1}}, upsert=True)
-@bot.command()
-async def testing2(ctx):
-    global user_id
-    global author_id
-    global exp
-    author_id = ctx.author.id
-    user_id = {"_id": author_id}
-    exp = collection.find(user_id)
-    for tl in exp:
-        cur_tl = tl["tl"]
-    exp = collection.find(user_id)
-    for te in exp:
-        cur_te = te["te"]
-    exp = collection.find(user_id)
-    for ttr in exp:
-        cur_ttr = ttr["ttr"]
-    exp = collection.find(user_id)
-    for tr in exp:
-        cur_tr = tr["tr"]
-    exp = collection.find(user_id)
-    for tpc in exp:
-        cur_tpc = tpc["tpc"]
-    exp = collection.find(user_id)
-    for b2 in exp:
-        cur_b2 = b2["b2"]
-    if cur_b2 == 0:
-        s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
-        if s>=1000:
-            embed=discord.Embed(title=" ━━━━━━━", color=0x636363)
-            embed.add_field(name="New badge", value="⭐ 1,000pts", inline=False)
-            await ctx.send(embed=embed)
-            exp = collection.find(user_id)
-            for b2 in exp:
-                new_b2 = cur_b2 + 1
-            collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
-    if cur_b2 == 1:
-        s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
-        if s>=10000:
-            embed=discord.Embed(title=" ━━━━━━━", color=0x636363)
-            embed.add_field(name="New badge", value="🌟 10,000pts", inline=False)
-            await ctx.send(embed=embed)
-            exp = collection.find(user_id)
-            for b2 in exp:
-                new_b2 = cur_b2 + 1
-            collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
-    if cur_b2 == 2:
-        s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
-        if s>=100000:
-            embed=discord.Embed(title=" ━━━━━━━", color=0x636363)
-            embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
-            await ctx.send(embed=embed)
-            exp = collection.find(user_id)
-            for b2 in exp:
-                new_b2 = cur_b2 + 1
-            collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
-            
+        
 #REWARD
 @bot.command()
 async def reward(ctx):
@@ -179,18 +103,15 @@ s4=tpc4*1+tr4*15+ttr4*200+te4*1500+tl4*25000
 
 #COLLECTION
 @bot.command()
-async def Collection(ctx):
-    global user_id
-    global author_id
-    global tl
-    global te
-    global ttr
-    global tr
-    global tpc
-    global exp
-    author_id = ctx.author.id
-    user_id = {"_id": author_id}
-    name = await bot.fetch_user(author_id)
+async def Collection(ctx, member:discord.Member=None):
+    if member == None:
+        author_id = ctx.author.id
+        user_id = {"_id": author_id}
+        name = await bot.fetch_user(author_id)
+    else:
+        author_id = member.id
+        user_id = {"_id": author_id}
+        name=member
     exp = collection.find(user_id)
     for tl in exp:
         cur_tl = tl["tl"]
@@ -282,14 +203,15 @@ async def top(ctx):
 
 #CARD
 @bot.command()
-async def card(ctx):
-    global user_id
-    global author_id
-    global exp
-    author_id = ctx.author.id
-    user_id = {"_id": author_id}
-    exp = collection.find(user_id)
-    name = await bot.fetch_user(author_id)
+async def card(ctx, member:discord.Member=None):
+    if member == None:
+        author_id = ctx.author.id
+        user_id = {"_id": author_id}
+        name = await bot.fetch_user(author_id)
+    else:
+        author_id = member.id
+        user_id = {"_id": author_id}
+        name=member
     badge = None
     exp = collection.find(user_id)
     for b1 in exp:
@@ -314,6 +236,13 @@ async def card(ctx):
             badge = str()
         badge=badge+"✨ "
     exp = collection.find(user_id)
+    for b3 in exp:
+        cur_b3 = b3["b3"]
+    if cur_b3 == 1:
+        if badge == None:
+            badge = str()
+        badge=badge+"🌈 "
+    exp = collection.find(user_id) 
     for tl in exp:
         cur_tl = tl["tl"]
     exp = collection.find(user_id)
@@ -377,12 +306,8 @@ async def score(ctx):
 #BADGES
 @bot.command()
 async def badges(ctx):
-    global user_id
-    global author_id
-    global exp
     author_id = ctx.author.id
     user_id = {"_id": author_id}
-    exp = collection.find(user_id)
     name = await bot.fetch_user(author_id)
     badge = None
     exp = collection.find(user_id)
@@ -407,6 +332,13 @@ async def badges(ctx):
         if badge == None:
             badge = str() 
         badge=badge+"✨"
+    exp = collection.find(user_id)
+    for b3 in exp:
+        cur_b3 = b3["b3"]
+    if cur_b3 >= 1:
+        if badge == None:
+            badge = str() 
+        badge=badge+"🌈"
     embed=discord.Embed(title=" ━━━━━", color=0x636363)
     embed.set_author(name="BADGES 🎗️")
     embed.add_field(name="You have:", value=f"{badge}", inline=False)
@@ -425,8 +357,13 @@ async def badges(ctx):
         await message.add_reaction("🌟")
     if cur_b2 >= 3:
         await message.add_reaction("✨")
+    exp = collection.find(user_id)
+    for b3 in exp:
+        cur_b3 = b3["b3"]
+    if cur_b3 >= 1:
+        await message.add_reaction("🌈")
     def checkEmoji(reaction, user):
-        return ctx.message.author == user and message.id==reaction.message.id and(str(reaction.emoji) == "⚙" or str(reaction.emoji) == "⭐" or str(reaction.emoji) == "🌟" or str(reaction.emoji) == "✨")  
+        return ctx.message.author == user and message.id==reaction.message.id and(str(reaction.emoji) == "⚙" or str(reaction.emoji) == "⭐" or str(reaction.emoji) == "🌟" or str(reaction.emoji) == "✨" or str(reaction.emoji) == "🌈")  
     reaction, user = await bot.wait_for("reaction_add", check=checkEmoji)
     if reaction.emoji == "⚙":
         embed=discord.Embed(color=0xd1d1d1)
@@ -448,12 +385,18 @@ async def badges(ctx):
         embed.add_field(name="✨ 100,000 pts", value="Vous avez obtenu 100,000pts", inline=False)
         await ctx.send(embed=embed)
         reaction, user = await bot.wait_for("reaction_add", check=checkEmoji)
+    if reaction.emoji == "🌈":
+        embed=discord.Embed(color=0xd1d1d1)
+        embed.add_field(name="🌈 All rarities unlocked", value="Vous avez obtenu au moins une réponse de chaque rareté", inline=False)
+        await ctx.send(embed=embed)
+        reaction, user = await bot.wait_for("reaction_add", check=checkEmoji)
       
 #PROBA
 liste = (range(1000000))
 liste0 = (range(1000))
 debut = ["Hey!", "Hi!", "Hello there"]
-commun = ["Hmmmmm", "Still here?", "Pfff...", "2929831831...", "The people are like garbage", "I have to go on @channel", "No way...", "I hate that Alpacaman...", "I'm tired", "Are you serious?", "drop? haha", "Not today", "Don't disturb me", "...", "What are you waiting for?", "Stop doing that", "My name is Hououin Kyouma"]
+commun = ["Hmmmmm", "Still here?", "Pfff...", "2929831831...", "The people are like garbage", "I have to go on @channel", "No way...", "I hate that Alpacaman...", "I'm tired", "Are you serious?", "drop? haha", "Not today", "Don't disturb me", "...", "What are you waiting for?", "Stop doing that"]
+communK = ["Yes, it's me", "My name is Hououin Kyouma", "Fuahaha", "It's time for a new operation", "Hehehehe", "Deceive the world"]
 peucommun = ["Mission complete!", "Okey-Dokey !", "it's time to send a D-Mail...", "I'm the man who will destroy your ambitions.", "Butterfly Effect", "Gel-Banana...", "Oh-ha~! ♫", "The drink of the chosen ones, Dr Pepper !", "Daru, my Super Hacker!", "The Organization is chasing me after all.", "Future Gadget #1: The Bit Particle Gun!", "Future Gadget #2: The Bamboo Helicam!"]
 rare = ["Future Gadget #6: the Cyalume Saber!", "Human is dead, mismatch", "The Time Leap Machine!", "the IBN 5100!", "Metal Upa!", "The Divergence Meter!", "Christina, my assistant !"]
 tresrare = ["Fuahahahaha", "Huh? Mayushii's watch has stopped...", "The Reading Steiner!", "Future Gadget #8: the Phone Microwave!", "Tuturu! ♫"]
@@ -476,9 +419,12 @@ async def drop(ctx):
     user_id = {"_id": author_id}
     new_money=0
     exp = collection.find(user_id)
+    for boo in exp:
+        cur_boo = boo["boo"]
+    exp = collection.find(user_id)
     for money in exp:
         cur_money = money["money"]
-        new_money = cur_money + 1
+        new_money = cur_money + (1*cur_boo)
     collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
     global hey
     global ope
@@ -495,6 +441,7 @@ async def drop(ctx):
     f = choice(tresrare)
     g = choice(épique)
     h = choice(légendaire)
+    k = choice(communK)
     if b==144078:
         print(b, ": légendaire")
         embed=discord.Embed(title=h, color=0xfff829)
@@ -515,7 +462,7 @@ async def drop(ctx):
             embed=discord.Embed(title="🎁 Gift x5 ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
             ope=ope+5
-    elif 20<=b<=50:
+    elif 10<=b<=50:
         print(b, ": épique")
         embed=discord.Embed(title=g, color=0xc955d8)
         exp = collection.find(user_id)
@@ -529,7 +476,7 @@ async def drop(ctx):
             embed=discord.Embed(title="🎁 Gift x3 ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
             ope=ope+3
-    elif 1300<=b<=1700:
+    elif 1300<=b<=1750:
         print(b, ": très rare")
         embed=discord.Embed(title=f, color=0x35d070)
         exp = collection.find(user_id)
@@ -571,17 +518,23 @@ async def drop(ctx):
             embed=discord.Embed(title="🎁 Gift ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
             ope=ope+1
-    elif b==0 or b==10 or b==1000000:
+    elif 100<b<200 or b==1000000:
         print("-> mega gift!")
         embed=discord.Embed(title="🎁 MEGA Gift ! (fais vite la commande `!pack`)", color=0xffffff)
         await ctx.send(embed=embed)
         opi=opi+1
     else:
         if hey==1:
-            await ctx.send("**🆕 Your collection has been uptaded!**" )
+            await ctx.send("**Bot has been uptaded!**" )
             await ctx.send(a)
         else:
-            await ctx.send(c)
+            exp = collection.find(user_id)
+            for boo in exp:
+                cur_boo = boo["boo"]
+            if cur_boo == 3:
+                await ctx.send(k)
+            else:
+                await ctx.send(c)
             if 500<=nb<=600:
                 print("-> gift!", nb)
                 embed=discord.Embed(title="🎁 Gift ! (fais vite la commande `!pack`)", color=0xffffff)
@@ -640,10 +593,22 @@ async def drop(ctx):
     exp = collection.find(user_id)
     for b2 in exp:
         cur_b2 = b2["b2"]
+    exp = collection.find(user_id)
+    for b3 in exp:
+        cur_b3 = b3["b3"]
+    if cur_b3 == 0:
+        if cur_tpc>=1 and cur_tr>=1 and cur_ttr>=1 and cur_te>=1 and cur_tl>=1:
+            embed=discord.Embed(color=0xd1d1d1)
+            embed.add_field(name="New badge", value="🌈 All rarities unlocked", inline=False)
+            await ctx.send(embed=embed)
+            exp = collection.find(user_id)
+            for b3 in exp:
+                new_b3 = cur_b3 + 1
+            collection.update_one({"_id": author_id}, {"$set":{"b3":new_b3}}, upsert=True)
     if cur_b2 == 0:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if 10000>s>=1000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="⭐ 1,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -651,7 +616,7 @@ async def drop(ctx):
                 new_b2 = cur_b2 + 1
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif 100000>s>=10000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="🌟 10,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -659,7 +624,7 @@ async def drop(ctx):
                 new_b2 = cur_b2 + 2
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -669,7 +634,7 @@ async def drop(ctx):
     if cur_b2 == 1:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if 100000>s>=10000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="🌟 10,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -677,7 +642,7 @@ async def drop(ctx):
                 new_b2 = cur_b2 + 1
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -687,7 +652,7 @@ async def drop(ctx):
     if cur_b2 == 2:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -705,6 +670,7 @@ async def shop(ctx):
     embed.add_field(name="3) Invocation ☄", value="1000 💰", inline=False)
     embed.add_field(name="4) MEGA gift 🎁", value="3500 💰", inline=False)
     embed.add_field(name="5) Invocation divine ☄", value="5000 💰", inline=False)
+    embed.add_field(name="6) Kyouma mode (+2 💰 each ``!drop`` during 30min)", value="1500 💰", inline=False)
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_1(ctx):
@@ -919,6 +885,57 @@ async def buy_5(ctx):
     else:
         embed=discord.Embed(title="❌ You don't have enough money !", color=0x636363)
     await ctx.send(embed=embed)
+@bot.command()
+async def buy_6(ctx):
+    global user_id
+    global author_id
+    global cur_timeb
+    author_id = ctx.author.id
+    user_id = {"_id": author_id}
+    exp = collection.find(user_id)
+    for money in exp:
+        cur_money = money["money"]
+    if cur_money>=1500:
+        exp = collection.find(user_id)
+        for timeb in exp:
+            cur_timeb = timeb["timeb"]
+            new_timeb = 1800
+            print(new_timeb)
+        collection.update_one({"_id": author_id}, {"$set":{"timeb":new_timeb}}, upsert=True)
+        new_money = cur_money-1500
+        collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
+        embed=discord.Embed(color=0x5c998a)
+        embed.add_field(name="🥼 Begin of the Kyouma Mode !", value="Vous gagnez 3 💰 par ``!drop`` pendant 30min",  inline=False)
+        await ctx.send(embed=embed)
+        message = await ctx.send(cur_timeb)
+        exp = collection.find(user_id)
+        for boo in exp:
+            cur_boo = boo["boo"]
+            new_boo = 3
+        collection.update_one({"_id": author_id}, {"$set":{"boo":new_boo}}, upsert=True)
+        exp = collection.find(user_id)
+        for timeb in exp:
+            cur_timeb = timeb["timeb"]
+        while cur_timeb > 1:
+            exp = collection.find(user_id)
+            for timeb in exp:
+                cur_timeb = timeb["timeb"]
+                new_timeb = cur_timeb-100
+            collection.update_one({"_id": author_id}, {"$set":{"timeb":new_timeb}}, upsert=True)
+            await message.edit(content=cur_timeb)
+            await asyncio.sleep(100)
+            exp = collection.find(user_id)
+        embed=discord.Embed(color=0x995c5c)
+        embed.add_field(name="❌ End of the Kyouma Mode !", value="Vous gagnez à nouveau 1 💰 par ``!drop``", inline=False)
+        await ctx.send(embed=embed)
+        exp = collection.find(user_id)
+        for boo in exp:
+            cur_boo = boo["boo"]
+            new_boo = 1
+        collection.update_one({"_id": author_id}, {"$set":{"boo":new_boo}}, upsert=True)
+    else:
+        embed=discord.Embed(title="❌ You don't have enough money !", color=0x636363)
+        await ctx.send(embed=embed)
 
 #INVOCATION
 @bot.command()
@@ -1080,7 +1097,7 @@ async def invocation(ctx):
     if cur_b2 == 0:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if 10000>s>=1000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="⭐ 1,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1088,7 +1105,7 @@ async def invocation(ctx):
                 new_b2 = cur_b2 + 1
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif 100000>s>=10000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="🌟 10,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1096,7 +1113,7 @@ async def invocation(ctx):
                 new_b2 = cur_b2 + 2
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1106,7 +1123,7 @@ async def invocation(ctx):
     if cur_b2 == 1:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if 100000>s>=10000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="🌟 10,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1114,7 +1131,7 @@ async def invocation(ctx):
                 new_b2 = cur_b2 + 1
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1124,7 +1141,7 @@ async def invocation(ctx):
     if cur_b2 == 2:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1443,7 +1460,7 @@ async def invocation_divine(ctx):
     if cur_b2 == 0:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if 10000>s>=1000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="⭐ 1,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1451,7 +1468,7 @@ async def invocation_divine(ctx):
                 new_b2 = cur_b2 + 1
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif 100000>s>=10000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="🌟 10,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1459,7 +1476,7 @@ async def invocation_divine(ctx):
                 new_b2 = cur_b2 + 2
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1469,7 +1486,7 @@ async def invocation_divine(ctx):
     if cur_b2 == 1:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if 100000>s>=10000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="🌟 10,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1477,7 +1494,7 @@ async def invocation_divine(ctx):
                 new_b2 = cur_b2 + 1
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1487,7 +1504,7 @@ async def invocation_divine(ctx):
     if cur_b2 == 2:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1638,6 +1655,78 @@ async def daily(ctx):
         new_te = cur_te + 1
         collection.update_one({"_id": author_id}, {"$set":{"te":new_te}}, upsert=True)
         await ctx.send(embed=embed)
+    exp = collection.find(user_id)
+    for tl in exp:
+        cur_tl = tl["tl"]
+    exp = collection.find(user_id)
+    for te in exp:
+        cur_te = te["te"]
+    exp = collection.find(user_id)
+    for ttr in exp:
+        cur_ttr = ttr["ttr"]
+    exp = collection.find(user_id)
+    for tr in exp:
+        cur_tr = tr["tr"]
+    exp = collection.find(user_id)
+    for tpc in exp:
+        cur_tpc = tpc["tpc"]
+    exp = collection.find(user_id)
+    for b2 in exp:
+        cur_b2 = b2["b2"]
+    if cur_b2 == 0:
+        s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
+        if 10000>s>=1000:
+            embed=discord.Embed(color=0xd1d1d1)
+            embed.add_field(name="New badge", value="⭐ 1,000pts", inline=False)
+            await ctx.send(embed=embed)
+            exp = collection.find(user_id)
+            for b2 in exp:
+                new_b2 = cur_b2 + 1
+            collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
+        elif 100000>s>=10000:
+            embed=discord.Embed(color=0xd1d1d1)
+            embed.add_field(name="New badge", value="🌟 10,000pts", inline=False)
+            await ctx.send(embed=embed)
+            exp = collection.find(user_id)
+            for b2 in exp:
+                new_b2 = cur_b2 + 2
+            collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
+        elif s>=100000:
+            embed=discord.Embed(color=0xd1d1d1)
+            embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
+            await ctx.send(embed=embed)
+            exp = collection.find(user_id)
+            for b2 in exp:
+                new_b2 = cur_b2 + 3
+            collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
+    if cur_b2 == 1:
+        s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
+        if 100000>s>=10000:
+            embed=discord.Embed(color=0xd1d1d1)
+            embed.add_field(name="New badge", value="🌟 10,000pts", inline=False)
+            await ctx.send(embed=embed)
+            exp = collection.find(user_id)
+            for b2 in exp:
+                new_b2 = cur_b2 + 1
+            collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
+        elif s>=100000:
+            embed=discord.Embed(color=0xd1d1d1)
+            embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
+            await ctx.send(embed=embed)
+            exp = collection.find(user_id)
+            for b2 in exp:
+                new_b2 = cur_b2 + 2
+            collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
+    if cur_b2 == 2:
+        s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
+        if s>=100000:
+            embed=discord.Embed(color=0xd1d1d1)
+            embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
+            await ctx.send(embed=embed)
+            exp = collection.find(user_id)
+            for b2 in exp:
+                new_b2 = cur_b2 + 1
+            collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
 
 @daily.error
 async def command_daily_error(ctx, error):
@@ -1797,7 +1886,7 @@ async def pack(ctx):
     if cur_b2 == 0:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if 10000>s>=1000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="⭐ 1,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1805,7 +1894,7 @@ async def pack(ctx):
                 new_b2 = cur_b2 + 1
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif 100000>s>=10000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="🌟 10,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1813,7 +1902,7 @@ async def pack(ctx):
                 new_b2 = cur_b2 + 2
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1823,7 +1912,7 @@ async def pack(ctx):
     if cur_b2 == 1:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if 100000>s>=10000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="🌟 10,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1831,7 +1920,7 @@ async def pack(ctx):
                 new_b2 = cur_b2 + 1
             collection.update_one({"_id": author_id}, {"$set":{"b2":new_b2}}, upsert=True)
         elif s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
@@ -1841,7 +1930,7 @@ async def pack(ctx):
     if cur_b2 == 2:
         s=cur_tpc*1+cur_tr*15+cur_ttr*200+cur_te*1500+cur_tl*25000
         if s>=100000:
-            embed=discord.Embed(title=" ━━━━━", color=0x636363)
+            embed=discord.Embed(color=0xd1d1d1)
             embed.add_field(name="New badge", value="✨ 100,000pts", inline=False)
             await ctx.send(embed=embed)
             exp = collection.find(user_id)
