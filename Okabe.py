@@ -1823,7 +1823,7 @@ async def pack(ctx):
         await ctx.send("Lucky...")
         nb = choice(rec)
         opi=opi-1
-        if nb<6000:
+        if nb<5500:
             print("mega gift : très rare")
             embed=discord.Embed(title=f, color=0x35d070)
             exp = collection.find(user_id)
@@ -1832,12 +1832,12 @@ async def pack(ctx):
                 new_ttr = cur_ttr + 1
             collection.update_one({"_id": author_id}, {"$set":{"ttr":new_ttr}}, upsert=True)
             await ctx.send(embed=embed)      
-        elif 6000<=nb<8000:
-            print("-> giftx10!")
+        elif 6000<nb<8000:
+            print("-> giftx15!")
             embed=discord.Embed(title="🎁 Gift x10 ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
-            ope=ope+10
-        elif 8000<=nb<=9800:
+            ope=ope+15
+        elif 5500<=nb<5800 or 8000<=nb<=9800:
             print("mega gift : épique")
             embed=discord.Embed(title=g, color=0xc955d8)
             exp = collection.find(user_id)
@@ -1857,7 +1857,7 @@ async def pack(ctx):
             collection.update_one({"_id": author_id}, {"$set":{"tl":new_tl}}, upsert=True)
             await ctx.send(embed=embed)
             await ctx.send("tag @Vic pour avoir ce message dans ta collection ! (légendaire)")
-        elif 9900<=nb<=10000:
+        elif 9900<=nb<=10000 or 5800<=nb<=6000:
             print("-> giftx30!")
             embed=discord.Embed(title="🎁 Gift x30 ! (fais vite la commande `!pack`)", color=0xffffff)
             await ctx.send(embed=embed)
