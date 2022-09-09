@@ -665,12 +665,12 @@ async def drop(ctx):
 async def shop(ctx):
     embed=discord.Embed(title=" ━━━━━━━━━━━━━━━━━━━━━", color=0x636363)
     embed.set_author(name="SHOP 🛒️")
-    embed.add_field(name="1) 1x gift 🎁", value="100 💰", inline=False)
-    embed.add_field(name="2) 3x gifts 🎁", value="200 💰", inline=False)
-    embed.add_field(name="3) Invocation ☄", value="1000 💰", inline=False)
-    embed.add_field(name="4) MEGA gift 🎁", value="3500 💰", inline=False)
+    embed.add_field(name="1) 1x gift 🎁", value="75 💰", inline=False)
+    embed.add_field(name="2) 3x gifts 🎁", value="150 💰", inline=False)
+    embed.add_field(name="3) Invocation ☄", value="750 💰", inline=False)
+    embed.add_field(name="4) MEGA gift 🎁", value="3000 💰", inline=False)
     embed.add_field(name="5) Invocation divine ☄", value="5000 💰", inline=False)
-    embed.add_field(name="6) Kyouma mode (+2 💰 each ``!drop`` during 30min)", value="1500 💰", inline=False)
+    embed.add_field(name="6) Kyouma mode 🥼", value="1500 💰", inline=False)
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_1(ctx):
@@ -684,9 +684,9 @@ async def buy_1(ctx):
     exp = collection.find(user_id)
     for money in exp:
         cur_money = money["money"]
-    if cur_money>=100:
+    if cur_money>=75:
         embed=discord.Embed(title="You buy 🎁 Gift x1 !", color=0xffffff)
-        new_money = cur_money - 100
+        new_money = cur_money - 75
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         ope=ope+1
     else:
@@ -704,9 +704,9 @@ async def buy_2(ctx):
     exp = collection.find(user_id)
     for money in exp:
         cur_money = money["money"]
-    if cur_money>=200:
+    if cur_money>=150:
         embed=discord.Embed(title="You buy 🎁 Gift x3 !", color=0xffffff)
-        new_money = cur_money - 200
+        new_money = cur_money - 150
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         ope=ope+3
     else:
@@ -724,8 +724,8 @@ async def buy_3(ctx):
     exp = collection.find(user_id)
     for money in exp:
         cur_money = money["money"]
-    if cur_money>=1000:
-        new_money = cur_money - 1000
+    if cur_money>=750:
+        new_money = cur_money - 750
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         global c_i1
         global c_i2
@@ -785,9 +785,9 @@ async def buy_4(ctx):
     exp = collection.find(user_id)
     for money in exp:
         cur_money = money["money"]
-    if cur_money>=3500:
+    if cur_money>=3000:
         embed=discord.Embed(title="You buy 🎁 MEGA Gift !", color=0xffffff)
-        new_money = cur_money - 3500
+        new_money = cur_money - 3000
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         opi=opi+1
     else:
