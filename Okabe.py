@@ -899,13 +899,13 @@ async def buy_6(ctx):
         exp = collection.find(user_id)
         for timeb in exp:
             cur_timeb = timeb["timeb"]
-            new_timeb = 1800
+            new_timeb = 900
             print(new_timeb)
         collection.update_one({"_id": author_id}, {"$set":{"timeb":new_timeb}}, upsert=True)
         new_money = cur_money-1500
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         embed=discord.Embed(color=0x5c998a)
-        embed.add_field(name="🥼 Begin of the Kyouma Mode !", value="Vous gagnez 3 💰 par ``!drop`` pendant 30min",  inline=False)
+        embed.add_field(name="🥼 Begin of the Kyouma Mode !", value="Vous gagnez 4 💰 par ``!drop`` pendant 15min",  inline=False)
         await ctx.send(embed=embed)
         message = await ctx.send(cur_timeb)
         exp = collection.find(user_id)
