@@ -671,7 +671,7 @@ async def shop(ctx):
     embed.add_field(name="3) Invocation ☄", value="750 💰", inline=False)
     embed.add_field(name="4) MEGA gift 🎁", value="3000 💰", inline=False)
     embed.add_field(name="5) Invocation divine ☄", value="5000 💰", inline=False)
-    embed.add_field(name="6) Kyouma mode 🥼", value="1500 💰", inline=False)
+    embed.add_field(name="6) Kyouma mode 🥼", value="750 💰", inline=False)
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_1(ctx):
@@ -896,17 +896,17 @@ async def buy_6(ctx):
     exp = collection.find(user_id)
     for money in exp:
         cur_money = money["money"]
-    if cur_money>=1500:
+    if cur_money>=750:
         exp = collection.find(user_id)
         for timeb in exp:
             cur_timeb = timeb["timeb"]
             new_timeb = 1200
             print(new_timeb)
         collection.update_one({"_id": author_id}, {"$set":{"timeb":new_timeb}}, upsert=True)
-        new_money = cur_money-1500
+        new_money = cur_money-750
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
         embed=discord.Embed(color=0x5c998a)
-        embed.add_field(name="🥼 Begin of the Kyouma Mode !", value="Vous gagnez 4 💰 par ``!drop`` pendant 20min",  inline=False)
+        embed.add_field(name="🥼 Begin of the Kyouma Mode !", value="Vous gagnez 3 💰 par ``!drop`` pendant 20min",  inline=False)
         await ctx.send(embed=embed)
         message = await ctx.send(cur_timeb)
         exp = collection.find(user_id)
