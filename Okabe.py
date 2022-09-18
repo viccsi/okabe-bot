@@ -6,6 +6,7 @@ from random import *
 from discord.ext import commands
 import datetime
 from discord.ext.commands import cooldown, BucketType
+import asyncio
 
 bot = commands.Bot(command_prefix = "!", description = "Bot by Vic")
 global collection
