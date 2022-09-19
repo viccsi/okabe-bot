@@ -924,7 +924,6 @@ async def buy_6(ctx):
                 new_timeb = cur_timeb-100
                 print(new_timeb)
             collection.update_one({"_id": author_id}, {"$set":{"timeb":new_timeb}}, upsert=True)
-            await message.edit(content=cur_timeb)
             await asyncio.sleep(100)
             exp = collection.find(user_id)
         embed=discord.Embed(color=0x995c5c)
@@ -935,10 +934,24 @@ async def buy_6(ctx):
             cur_boo = boo["boo"]
             new_boo = 1
         collection.update_one({"_id": author_id}, {"$set":{"boo":new_boo}}, upsert=True)
+        for timeb in exp:
+                cur_timeb = timeb["timeb"]
+                new_timeb = 0
+            collection.update_one({"_id": author_id}, {"$set":{"timeb":new_timeb}}, upsert=True)
     else:
         embed=discord.Embed(title="❌ You don't have enough money !", color=0x636363)
         await ctx.send(embed=embed)
 
+#KYOUMA MODE
+@bot.command()
+async def k_time(ctx):
+   exp = collection.find(user_id)
+   for timeb in exp:
+      cur_timeb = timeb["timeb"]
+   embed = discord.Embed(title=f"KYOUMA MODE TIME",description=f"You have " + str(cur_timeb) + f"left", color=0x575757)
+   await ctx.send(embed=embed)
+      
+      
 #INVOCATION
 @bot.command()
 async def invocation(ctx):
