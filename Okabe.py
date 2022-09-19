@@ -908,7 +908,7 @@ async def buy_6(ctx):
         embed=discord.Embed(color=0x5c998a)
         embed.add_field(name="🥼 Begin of the Kyouma Mode !", value="Vous gagnez 3 💰 par ``!drop`` pendant 20min",  inline=False)
         await ctx.send(embed=embed)
-        message = await ctx.send(cur_timeb)
+        message = await ctx.send(str(datetime.timedelta(seconds=int(new_timeb)))
         exp = collection.find(user_id)
         for boo in exp:
             cur_boo = boo["boo"]
@@ -949,7 +949,7 @@ async def k_time(ctx):
    exp = collection.find(user_id)
    for timeb in exp:
       cur_timeb = timeb["timeb"]
-   embed = discord.Embed(title=f"KYOUMA MODE TIME",description=f"You have " + str(cur_timeb) + f"left", color=0x575757)
+   embed = discord.Embed(title=f"KYOUMA MODE - TIME",description=f"You have " + str(datetime.timedelta(seconds=int(cur_timeb)) + f" left", color=0x575757)
    await ctx.send(embed=embed)
       
       
