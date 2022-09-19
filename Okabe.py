@@ -949,7 +949,7 @@ async def k_time(ctx):
    exp = collection.find(user_id)
    for timeb in exp:
       cur_timeb = timeb["timeb"]
-   embed = discord.Embed(title=f"KYOUMA MODE - TIME",description=f"You have " + str(datetime.timedelta(seconds=int(cur_timeb)) + f" left", color=0x575757)
+   embed = discord.Embed(title=f"KYOUMA MODE - TIME",description=f"You have " + str(datetime.timedelta(seconds=int(cur_timeb))) + f" left", color=0x575757)
    await ctx.send(embed=embed)
       
       
