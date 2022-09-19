@@ -946,6 +946,8 @@ async def buy_6(ctx):
 #KYOUMA MODE
 @bot.command()
 async def k_time(ctx):
+   author_id = ctx.author.id
+   user_id = {"_id": author_id}
    exp = collection.find(user_id)
    for timeb in exp:
       cur_timeb = timeb["timeb"]
