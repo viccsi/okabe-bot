@@ -934,10 +934,11 @@ async def buy_6(ctx):
             cur_boo = boo["boo"]
             new_boo = 1
         collection.update_one({"_id": author_id}, {"$set":{"boo":new_boo}}, upsert=True)
+        exp = collection.find(user_id)
         for timeb in exp:
-                cur_timeb = timeb["timeb"]
-                new_timeb = 0
-            collection.update_one({"_id": author_id}, {"$set":{"timeb":new_timeb}}, upsert=True)
+            cur_timeb = timeb["timeb"]
+            new_timeb = 0
+        collection.update_one({"_id": author_id}, {"$set":{"timeb":new_timeb}}, upsert=True)
     else:
         embed=discord.Embed(title="❌ You don't have enough money !", color=0x636363)
         await ctx.send(embed=embed)
