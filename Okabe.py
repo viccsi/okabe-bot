@@ -918,13 +918,13 @@ async def buy_6(ctx):
         for timeb in exp:
             cur_timeb = timeb["timeb"]
         while cur_timeb > 1:
+            await asyncio.sleep(100)
             exp = collection.find(user_id)
             for timeb in exp:
                 cur_timeb = timeb["timeb"]
                 new_timeb = cur_timeb-100
                 print(new_timeb)
             collection.update_one({"_id": author_id}, {"$set":{"timeb":new_timeb}}, upsert=True)
-            await asyncio.sleep(100)
             exp = collection.find(user_id)
         embed=discord.Embed(color=0x995c5c)
         embed.add_field(name="❌ End of the Kyouma Mode !", value="Vous gagnez à nouveau 1 💰 par ``!drop``", inline=False)
