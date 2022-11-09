@@ -136,8 +136,7 @@ async def Collection(ctx, member:discord.Member=None):
 #MONEY
 @bot.command()
 async def money(ctx):
-    global user_id
-    global author_id
+    global user_id, author_id
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     exp = collection.find(user_id)
@@ -409,9 +408,7 @@ opi=0
 nb_inv=0
 @bot.command()
 async def drop(ctx):
-    global new_money
-    global user_id
-    global author_id
+    global new_money, user_id, author_id
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     new_money=0
@@ -671,10 +668,7 @@ async def shop(ctx):
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_1(ctx):
-    global user_id
-    global author_id
-    global new_money
-    global ope
+    global user_id, author_id, new_money, ope
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     new_money=0
@@ -691,10 +685,7 @@ async def buy_1(ctx):
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_2(ctx):
-    global ope
-    global user_id
-    global author_id
-    global new_money
+    global ope, user_id, author_id, new_money
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     new_money=0
@@ -711,10 +702,7 @@ async def buy_2(ctx):
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_3(ctx):
-    global user_id
-    global author_id
-    global new_money
-    global ope
+    global ope, user_id, author_id, new_money
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     new_money=0
@@ -724,14 +712,7 @@ async def buy_3(ctx):
     if cur_money>=750:
         new_money = cur_money - 750
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
-        global c_i1
-        global c_i2
-        global c_i3
-        global nb_inv
-        global ipc
-        global ir
-        global itr
-        global ie
+        global c_i1, c_i2, c_i3, nb_inv, ipc, ir, itr, ie
         nb_inv = nb_inv+1
         ipc = "🔵"
         ir = "🟠"
@@ -1530,19 +1511,7 @@ async def invocation_divine(ctx):
 @bot.command()
 @cooldown(1, 86400, BucketType.user)
 async def daily(ctx): 
-    global nb_da
-    global new_tpc
-    global new_tr
-    global new_ttr
-    global new_te
-    global user_id
-    global author_id
-    global te
-    global ttr
-    global tr
-    global tpc
-    global exp
-    global ope
+    global nb_da, new_tpc, new_tr, new_ttr, new_te, user_id, author_id, te, ttr, tr, tpc, exp, ope
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     ti_da_1 = range(90)
@@ -1611,14 +1580,7 @@ async def daily(ctx):
         embed=discord.Embed(title="+" f"{nb_mo_3}" " 💰", color=0xffffff)
         await ctx.send(embed=embed)
     elif 9900<nb_da<=9950:
-        global c_i1
-        global c_i2
-        global c_i3
-        global nb_inv
-        global ipc
-        global ir
-        global itr
-        global ie
+        global c_i1, c_i2, c_i3, nb_inv, ipc, ir, itr, ie
         nb_inv = nb_inv+1
         ipc = "🔵"
         ir = "🟠"
@@ -1972,8 +1934,7 @@ async def h0w(ctx):
 @bot.command()
 @cooldown(1, 3600, BucketType.user)
 async def dr0p(ctx):
-   global user_id
-   global author_id
+   global user_id, author_id
    author_id = ctx.author.id
    user_id = {"_id": author_id} 
    exp = collection.find(user_id)
@@ -2022,9 +1983,7 @@ async def dr0p(ctx):
 @dr0p.error
 async def command_dr0p_error(ctx, error):
    if isinstance(error, commands.CommandOnCooldown):
-      global user_id
-      global author_id
-      global cur_tl
+      global user_id, author_id, cur_tl
       author_id = ctx.author.id
       user_id = {"_id": author_id} 
       exp = collection.find(user_id)
