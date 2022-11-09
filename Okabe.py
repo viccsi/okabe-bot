@@ -9,10 +9,7 @@ from discord.ext.commands import cooldown, BucketType
 import asyncio
 
 bot = commands.Bot(command_prefix = "!", description = "Bot by Vic")
-global collection
-global mango_url
-global cluster
-global db
+global collection, mango_url, cluster, db
 mango_url = "mongodb+srv://Vicsi:RafaVic1!@cluster0.2ohdo.mongodb.net/?retryWrites=true&w=majority"
 cluster = MongoClient(mango_url)
 db = cluster["OkabeData"]
@@ -25,8 +22,7 @@ async def on_ready():
 #CONNECT
 @bot.command()
 async def start(ctx):
-   global user_id
-   global author_id
+   global user_id, author_id
    author_id = ctx.author.id
    user_id = {"_id": author_id}
    if ctx.author == bot.user:
