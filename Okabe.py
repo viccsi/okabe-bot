@@ -268,14 +268,7 @@ async def card(ctx, member:discord.Member=None):
 #SCORE
 @bot.command()
 async def score(ctx):
-    global user_id
-    global author_id
-    global tl
-    global te
-    global ttr
-    global tr
-    global tpc
-    global exp
+    global user_id, author_id, tl, te, ttr, tr, tpc, exp
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     exp = collection.find(user_id)
@@ -420,9 +413,7 @@ async def drop(ctx):
         cur_money = money["money"]
         new_money = cur_money + (1*cur_boo)
     collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
-    global hey
-    global ope
-    global opi
+    global hey, ope, opi
     opi = opi+0
     ope = ope+0
     hey = hey+1
@@ -753,10 +744,7 @@ async def buy_3(ctx):
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_4(ctx):
-    global opi
-    global user_id
-    global author_id
-    global new_money
+    global opi, user_id, author_id, new_money
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     new_money=0
@@ -773,10 +761,7 @@ async def buy_4(ctx):
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_5(ctx):
-    global user_id
-    global author_id
-    global new_money
-    global ope
+    global user_id, author_id, new_money, ope
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     new_money=0
@@ -786,17 +771,7 @@ async def buy_5(ctx):
     if cur_money>=5000:
         new_money = cur_money - 5000
         collection.update_one({"_id": author_id}, {"$set":{"money":new_money}}, upsert=True)
-        global c_i1
-        global c_i2
-        global c_i3
-        global c_i4
-        global c_i5
-        global nb_inv
-        global ipc
-        global ir
-        global itr
-        global ie
-        global il
+        global c_i1, c_i2, c_i3, c_i4, c_i5, nb_inv, ipc, ir, itr, ie, il
         nb_inv = nb_inv+1
         ipc = "🔵"
         ir = "🟠"
@@ -865,9 +840,7 @@ async def buy_5(ctx):
     await ctx.send(embed=embed)
 @bot.command()
 async def buy_6(ctx):
-    global user_id
-    global author_id
-    global cur_timeb
+    global user_id, author_id, cur_timeb
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     exp = collection.find(user_id)
@@ -935,27 +908,7 @@ async def k_time(ctx):
 #INVOCATION
 @bot.command()
 async def invocation(ctx):
-    global c_i1
-    global c_i2
-    global c_i3
-    global nb_inv
-    global new_tpc
-    global new_tr
-    global new_ttr
-    global new_te
-    global new_tl
-    global ipc
-    global ir
-    global itr
-    global ie
-    global user_id
-    global author_id
-    global tl
-    global te
-    global ttr
-    global tr
-    global tpc
-    global exp
+    global c_i1, c_i2, c_i3, c_i4, c_i5, nb_inv, ipc, ir, itr, ie, new_tpc, new_tr, new_ttr, new_te, new_tl, user_id, author_id, exp
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     if nb_inv>=1:
@@ -1146,27 +1099,7 @@ async def invocation(ctx):
 
 @bot.command()
 async def invocation_divine(ctx):
-    global c_i1
-    global c_i2
-    global c_i3
-    global nb_inv
-    global new_tpc
-    global new_tr
-    global new_ttr
-    global new_te
-    global new_tl
-    global ipc
-    global ir
-    global itr
-    global ie
-    global user_id
-    global author_id
-    global tl
-    global te
-    global ttr
-    global tr
-    global tpc
-    global exp
+    global c_i1, c_i2, c_i3, c_i4, c_i5, nb_inv, ipc, ir, itr, ie, new_tpc, new_tr, new_ttr, new_te, new_tl, user_id, author_id, exp
     author_id = ctx.author.id
     user_id = {"_id": author_id}
     if nb_inv>=1:
@@ -1714,11 +1647,7 @@ async def command_daily_error(ctx, error):
 #GIFT
 @bot.command()
 async def pack(ctx):
-    global ope
-    global opi
-    global user_id
-    global author_id
-    global new_money
+    global ope, opi, user_id, author_id, new_money
     a = choice(debut)
     b = choice(liste)
     c = choice(commun)
@@ -2000,8 +1929,7 @@ async def command_dr0p_error(ctx, error):
 #C0LLECTI0N
 @bot.command()
 async def C0llecti0n(ctx):
-    global user_id
-    global author_id
+    global user_id, author_id
     author_id = ctx.author.id
     user_id = {"_id": author_id} 
     name = await bot.fetch_user(author_id)
